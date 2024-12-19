@@ -8,19 +8,21 @@ export default function Error404() {
   return (
     <div class="flex flex-col gap-y-8 max-w-[40vw]">
       <Head>
-        <title>404 - Page not found</title>
+        <title>500 - Internal Server Error</title>
       </Head>
 
       <>
         <HeadingOne>
-          <LetterHighlight>P</LetterHighlight>age{" "}
-          <LetterHighlight>n</LetterHighlight>ot{" "}
-          <LetterHighlight>f</LetterHighlight>ound
+          <LetterHighlight>I</LetterHighlight>nternal{" "}
+          <LetterHighlight>S</LetterHighlight>erver{" "}
+          <LetterHighlight>E</LetterHighlight>rror
         </HeadingOne>
 
         <Paragraph>
-          The system you were looking for doesn't exist in the shattered
-          Frontier. Did you make the right jump?
+          Gates went offline, storage units are inaccessible, printers stopped
+          working and rifts seem to fluctuate with even stronger gravitational
+          forces. What's going on? We are informed of the situation, but have to
+          recalibrate and find a way out of this mess.
         </Paragraph>
 
         <LinkButton href="/">Warp back to home</LinkButton>
