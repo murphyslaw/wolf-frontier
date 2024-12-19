@@ -3,20 +3,32 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $_404 from "./routes/_404.tsx";
+import * as $_500 from "./routes/_500.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
+import * as $characters_index from "./routes/characters/index.tsx";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
+import * as $legal_layout from "./routes/legal/_layout.tsx";
+import * as $legal_privacy_policy from "./routes/legal/privacy-policy.tsx";
+import * as $legal_terms_of_service from "./routes/legal/terms-of-service.tsx";
 import * as $Counter from "./islands/Counter.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
+    "./routes/_500.tsx": $_500,
     "./routes/_app.tsx": $_app,
+    "./routes/_layout.tsx": $_layout,
     "./routes/api/joke.ts": $api_joke,
+    "./routes/characters/index.tsx": $characters_index,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
+    "./routes/legal/_layout.tsx": $legal_layout,
+    "./routes/legal/privacy-policy.tsx": $legal_privacy_policy,
+    "./routes/legal/terms-of-service.tsx": $legal_terms_of_service,
   },
   islands: {
     "./islands/Counter.tsx": $Counter,

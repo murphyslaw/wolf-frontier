@@ -62,4 +62,9 @@
     font-stretch: normal;
     font-display: swap
   }
+
+  html {
+    font-family: "Body", system-ui, sans-serif;
+    color: theme('colors.white');
+  }
 }

@@ -10,12 +10,18 @@ export default {
       "body": ["Body"],
     },
     extend: {
+      fontSize: {
+        "2xs": "0.5625rem",
+      },
       colors: {
         white: "#fafae5",
         orange: "#ff4700",
+        grayLight: "#fafae580",
+        gray: "#0f0f0f",
       },
       letterSpacing: {
         tighter: "-.04",
+        wider: ".09em",
         widest: ".84px",
       },
     },

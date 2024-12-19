@@ -1,6 +1,6 @@
 import { JSX } from "preact";
 
-export function Heading(props: JSX.HTMLAttributes<HTMLHeadingElement>) {
+export function HeadingOne(props: JSX.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h1
       {...props}
