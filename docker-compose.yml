@@ -1,6 +1,7 @@
 services:
   web:
     container_name: wolf-frontier
-    image: ghcr.io/murphyslaw/wolf-frontier:latest
+    build: .
+    env_file: .env
     ports:
       - "80:8000"
