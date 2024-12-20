@@ -1,54 +1,21 @@
 import { FreshContext } from "$fresh/server.ts";
 import { HeadingOne } from "../../components/HeadingOne.tsx";
-import { Paragraph } from "../../components/Paragraph.tsx";
+import LetterHighlight from "../../components/LetterHighlight.tsx";
 import { characterService } from "../../utils/CharacterService.ts";
 
 export default async function Characters(_req, ctx: FreshContext) {
-  const result = await characterService.count();
+  const count = await characterService.count();
 
   return (
     <>
       <HeadingOne>
-        Smart Characters
+        <LetterHighlight>S</LetterHighlight>mart{" "}
+        <LetterHighlight>C</LetterHighlight>haracters
       </HeadingOne>
 
       <pre>
-        {result}
+        {count}
       </pre>
-
-      <Paragraph>
-        test a fasd lfajds lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs
-        lfjadslf jfalsdja flköasf test a fasd lfajds lfjasd lfkjasdl kfjalsdk
-        jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf test a fasd lfajds
-        lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf
-        test a fasd lfajds lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs
-        lfjadslf jfalsdja flköasf test a fasd lfajds lfjasd lfkjasdl kfjalsdk
-        jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf test a fasd lfajds
-        lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf
-        test a fasd lfajds lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs
-        lfjadslf jfalsdja flköasf test a fasd lfajds lfjasd lfkjasdl kfjalsdk
-        jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf test a fasd lfajds
-        lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf
-        test a fasd lfajds lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs
-        lfjadslf jfalsdja flköasf test a fasd lfajds lfjasd lfkjasdl kfjalsdk
-        jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf test a fasd lfajds
-        lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf
-        test a fasd lfajds lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs
-        lfjadslf jfalsdja flköasf test a fasd lfajds lfjasd lfkjasdl kfjalsdk
-        jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf test a fasd lfajds
-        lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf
-        test a fasd lfajds lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs
-        lfjadslf jfalsdja flköasf test a fasd lfajds lfjasd lfkjasdl kfjalsdk
-        jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf test a fasd lfajds
-        lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf
-        test a fasd lfajds lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs
-        lfjadslf jfalsdja flköasf test a fasd lfajds lfjasd lfkjasdl kfjalsdk
-        jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf test a fasd lfajds
-        lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf
-        test a fasd lfajds lfjasd lfkjasdl kfjalsdk jfalsdj flajsd flakjs
-        lfjadslf jfalsdja flköasf test a fasd lfajds lfjasd lfkjasdl kfjalsdk
-        jfalsdj flajsd flakjs lfjadslf jfalsdja flköasf
-      </Paragraph>
     </>
   );
 }

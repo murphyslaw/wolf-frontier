@@ -9,7 +9,7 @@ export default function Layout({ Component }: PageProps) {
         class="px-4 py-8 mx-auto bg-no-repeat flex flex-col gap-y-10 bg-black"
         style="background-image: url('/images/fade_bg.webp')"
       >
-        <div class="max-w-[1527px] mx-auto min-h-screen">
+        <div class="max-w-[1527px] p-8 min-h-screen">
           <Component />
         </div>
       </div>

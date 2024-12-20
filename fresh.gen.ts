@@ -7,6 +7,7 @@ import * as $_500 from "./routes/_500.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
 import * as $api_joke from "./routes/api/joke.ts";
+import * as $characters_address_ from "./routes/characters/[address].tsx";
 import * as $characters_index from "./routes/characters/index.tsx";
 import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
@@ -23,6 +24,7 @@ const manifest = {
     "./routes/_app.tsx": $_app,
     "./routes/_layout.tsx": $_layout,
     "./routes/api/joke.ts": $api_joke,
+    "./routes/characters/[address].tsx": $characters_address_,
     "./routes/characters/index.tsx": $characters_index,
     "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
