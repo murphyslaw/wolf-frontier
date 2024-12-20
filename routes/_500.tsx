@@ -1,8 +1,5 @@
 import { Head } from "$fresh/runtime.ts";
-import { HeadingOne } from "../components/HeadingOne.tsx";
-import LetterHighlight from "../components/LetterHighlight.tsx";
 import { LinkButton } from "../components/LinkButton.tsx";
-import { Paragraph } from "../components/Paragraph.tsx";
 
 export default function Error404() {
   return (
@@ -12,18 +9,18 @@ export default function Error404() {
       </Head>
 
       <>
-        <HeadingOne>
-          <LetterHighlight>I</LetterHighlight>nternal{" "}
-          <LetterHighlight>S</LetterHighlight>erver{" "}
-          <LetterHighlight>E</LetterHighlight>rror
-        </HeadingOne>
+        <h1 class="displayLarge">
+          <span class="text-orange">I</span>nternal{" "}
+          <span class="text-orange">S</span>erver{" "}
+          <span class="text-orange">E</span>rror
+        </h1>
 
-        <Paragraph>
+        <p class="bodyMedium">
           Gates went offline, storage units are inaccessible, printers stopped
           working and rifts seem to fluctuate with even stronger gravitational
           forces. What's going on? We are informed of the situation, but have to
           recalibrate and find a way out of this mess.
-        </Paragraph>
+        </p>
 
         <LinkButton href="/">Warp back to home</LinkButton>
       </>

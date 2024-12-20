@@ -1,21 +1,33 @@
-import { FreshContext } from "$fresh/server.ts";
-import { HeadingOne } from "../../components/HeadingOne.tsx";
-import LetterHighlight from "../../components/LetterHighlight.tsx";
+import { CharacterCompact } from "../../components/CharacterCompact.tsx";
 import { characterService } from "../../utils/CharacterService.ts";
 
-export default async function Characters(_req, ctx: FreshContext) {
-  const count = await characterService.count();
+export default async function Characters() {
+  const wolfMembers = await characterService.listByTribe(98000005);
 
   return (
     <>
-      <HeadingOne>
-        <LetterHighlight>S</LetterHighlight>mart{" "}
-        <LetterHighlight>C</LetterHighlight>haracters
-      </HeadingOne>
+      <h1 class="displayLarge">
+        <span class="text-orange">S</span>mart{" "}
+        <span class="text-orange">C</span>haracters
+      </h1>
 
-      <pre>
-        {count}
-      </pre>
+      <div class="flex flex-col gap-4 w-full">
+        <div>
+          <h2 class="headlineLarge">
+            Wandering Order of the Last Frontier [WOLF]
+          </h2>
+
+          <label class="labelLarge text-grayLight">
+            Member Count: {wolfMembers.length}
+          </label>
+        </div>
+
+        <div class="flex flex-wrap gap-4">
+          {wolfMembers.map((member) => (
+            <CharacterCompact key={member.address} character={member} />
+          ))}
+        </div>
+      </div>
     </>
   );
 }

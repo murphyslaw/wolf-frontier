@@ -1,12 +1,12 @@
 import { JSX } from "preact";
-import { ButtonContainer } from "./ButtonContainer.tsx";
 
 export function LinkButton(props: JSX.HTMLAttributes<HTMLAnchorElement>) {
   return (
-    <ButtonContainer>
+    <div class="buttonContainer">
       <a
         {...props}
+        class="hover:text-inherit"
       />
-    </ButtonContainer>
+    </div>
   );
 }

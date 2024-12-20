@@ -70,15 +70,96 @@
 }
 
 @layer utilities {
-  .border {
+  .displayLarge {
+    text-transform: uppercase;
+    font-family: "Headline";
+    font-size: theme("fontSize.6xl");
+    font-weight: 400;
+    letter-spacing: theme("letterSpacing.tighter");
+  }
+
+  .headlineLarge {
+    text-transform: uppercase;
+    font-family: 'Headline';
+    font-size: theme('fontSize.3xl');
+    font-weight: normal;
+    letter-spacing: theme('letterSpacing.tighter');
+  }
+
+  .titleMedium {
+    text-transform: uppercase;
+    font-family: 'Headline';
+    font-size: theme('fontSize.sm');
+    font-weight: normal;
+    letter-spacing: theme('letterSpacing.wider');
+  }
+
+  .bodyMedium {
+    font-family: "Body";
+    font-size: 15px;
+    font-weight: 200;
+  }
+
+  a {
+    font-family: 'Headline';
+    letter-spacing: theme('letterSpacing.widest');
+
+    &:hover {
+      color: theme('colors.orange');
+    }
+  }
+
+  footer a {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  .buttonContainer {
+    padding: 0.5rem 1.5rem;
+    width: fit-content;
+    text-align: center;
+    color: theme("colors.black");
+    font-family: "Headline";
+    font-size: theme('fontSize.sm');
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    background-image: linear-gradient(to left, theme("colors.orange") 50%, theme("colors.white") 50%);
+    cursor: pointer;
+
+    &:hover {
+      background-position: left bottom;
+    }
+  }
+
+  .labelLarge {
+    text-transform: uppercase;
+    font-family: 'Headline';
+    font-size: theme('fontSize.xs');
+    font-weight: normal;
+    letter-spacing: theme('letterSpacing.wider');
+  }
+
+  .labelSmall {
+    text-transform: uppercase;
+    font-family: 'Headline';
+    font-size: theme('fontSize.2xs');
+    font-weight: 700;
+    letter-spacing: theme('letterSpacing.wider');
+  }
+
+
+
+  .bordered {
     position: relative;
     width: fit-content;
     height: fit-content;
     border: 1px solid #333;
-    padding: .625rem;
   }
 
-  .border::before {
+  .bordered::before {
     content: "";
     position: absolute;
     top: -1px;

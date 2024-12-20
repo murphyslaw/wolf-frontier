@@ -1,30 +1,39 @@
-import { SmartCharacter } from "../utils/CharacterService.ts";
-import { Border } from "./Border.tsx";
+import { characterService, SmartCharacter } from "../utils/CharacterService.ts";
 import { EveToken } from "./EveToken.tsx";
-import { HeadingOne } from "./HeadingOne.tsx";
-import { HeadingThree } from "./HeadingThree.tsx";
 import { Tribe } from "./Tribe.tsx";
 
 export function Character(props: { character: SmartCharacter }) {
+  const isOfficer = characterService.isOfficer(props.character.name);
+
   return (
     <div class="flex flex-row gap-4">
-      <Border>
+      <div class="bordered p-2">
         <img
           src={props.character.image}
           width="124px"
           height="124px"
         />
-      </Border>
+
+        {isOfficer && (
+          <img
+            src="/images/officer_badge.png"
+            class="absolute -bottom-4 -right-4 z-10"
+            width="30"
+            height="30"
+            title="Officer"
+          />
+        )}
+      </div>
 
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-0">
-          <HeadingThree>
+          <label class="labelLarge text-grayLight">
             Player
-          </HeadingThree>
+          </label>
 
-          <HeadingOne>
+          <h1 class="headlineLarge">
             {props.character.name}
-          </HeadingOne>
+          </h1>
 
           <Tribe
             name={props.character.tribe}

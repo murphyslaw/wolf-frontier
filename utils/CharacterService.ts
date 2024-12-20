@@ -2,15 +2,12 @@ import postgres from "https://deno.land/x/postgresjs@v3.4.5/mod.js";
 import { sql } from "./db.ts";
 
 export interface SmartCharacter {
-  smart_character_id: string;
   address: string;
   name: string;
-  is_smart_character: boolean;
-  created_at: string;
-  eve_balance_wei: string;
-  gas_balance_wei: string;
+  eve_balance: number;
   image: string;
-  tribe_id: string;
+  tribe: string;
+  ticker_name: string;
 }
 
 class CharacterService {
@@ -25,11 +22,11 @@ class CharacterService {
     return result.count;
   }
 
-  public async get(id: string): Promise<SmartCharacter> {
-    console.log(id);
+  public async get(address: string): Promise<SmartCharacter> {
     const [result] = await this
       .db`
         SELECT
+          sc.address,
           sc.name,
           ROUND(sc.eve_balance_wei / 1000000000000000000.0, 2) AS "eve_balance",
           ROUND(sc.gas_balance_wei / 1000000000000000000.0, 2) AS "gas_balance",
@@ -39,12 +36,37 @@ class CharacterService {
         FROM smartcharacters sc
         JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
-        AND address = '0xc1429630d07b8ebe7566386dd7cb1d7764a77596'
+        AND address = ${address}
       ;`;
 
-    console.log(result);
-
     return result as SmartCharacter;
+  }
+
+  public async listByTribe(tribeId: number): Promise<SmartCharacter[]> {
+    const result = await this
+      .db`
+        SELECT
+          sc.address,
+          sc.name,
+          ROUND(sc.eve_balance_wei / 1000000000000000000.0, 2) AS "eve_balance",
+          ROUND(sc.gas_balance_wei / 1000000000000000000.0, 2) AS "gas_balance",
+          sc.image,
+          t.name AS "tribe",
+          t.ticker_name
+        FROM smartcharacters sc
+        JOIN tribes t ON t.id = sc.tribe_id
+        WHERE TRUE
+        AND tribe_id = ${tribeId}
+      ;`;
+
+    return result as unknown as SmartCharacter[];
+  }
+
+  public isOfficer(name: string) {
+    return ["twisted", "zaroot", "dracula", "ukfatguy", "necstz", "murphyslaw"]
+      .includes(
+        name.toLowerCase(),
+      );
   }
 }
 

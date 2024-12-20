@@ -1,6 +1,4 @@
 import { PageProps } from "$fresh/server.ts";
-import { HeadingThree } from "../components/HeadingThree.tsx";
-import { Link } from "../components/Link.tsx";
 
 export default function Layout({ Component }: PageProps) {
   return (
@@ -9,7 +7,7 @@ export default function Layout({ Component }: PageProps) {
         class="px-4 py-8 mx-auto bg-no-repeat flex flex-col gap-y-10 bg-black"
         style="background-image: url('/images/fade_bg.webp')"
       >
-        <div class="max-w-[1527px] p-8 min-h-screen">
+        <div class="p-8 min-h-screen">
           <Component />
         </div>
       </div>
@@ -39,41 +37,41 @@ export default function Layout({ Component }: PageProps) {
 
           <ul>
             <li>
-              <HeadingThree>
+              <h3 class="labelSmall text-grayLight">
                 Legal
-              </HeadingThree>
+              </h3>
             </li>
 
             <li>
-              <Link href="/legal/terms-of-service">
+              <a href="/legal/terms-of-service" class="bodyMedium">
                 Terms of Service
-              </Link>
+              </a>
             </li>
 
             <li>
-              <Link href="/legal/privacy-policy">
+              <a href="/legal/privacy-policy" class="bodyMedium">
                 Privacy Policy
-              </Link>
+              </a>
             </li>
           </ul>
 
           <ul>
             <li>
-              <HeadingThree>
+              <h3 class="labelSmall text-grayLight">
                 Related Content
-              </HeadingThree>
+              </h3>
             </li>
 
             <li>
-              <Link href="https://www.evefrontier.com/">
+              <a href="https://www.evefrontier.com/" class="bodyMedium">
                 EVE Frontier
-              </Link>
+              </a>
             </li>
 
             <li>
-              <Link href="https://www.ccpgames.com">
+              <a href="https://www.ccpgames.com" class="bodyMedium">
                 CCP Games
-              </Link>
+              </a>
             </li>
           </ul>
         </div>
