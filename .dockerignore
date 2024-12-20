@@ -1,0 +1,12 @@
+.env
+.env.sample
+.git
+.gitignore
+.DS_Store
+.vscode
+_fresh/
+node_modules/
+Dockerfile
+.dockerignore
+docker-compose.yml
+README.md
