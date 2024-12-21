@@ -134,6 +134,34 @@ class KillmailService {
         JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
           AND sc.tribe_id = ${tribeId}
+        ORDER BY
+          km.timestamp DESC
+        LIMIT 100
+      ;`;
+
+    return result;
+  }
+
+  public async findByCharacter(address: string): Promise<IKillMail[]> {
+    const result = await this
+      .db<IKillMail[]>`
+        SELECT
+          km.id,
+          km.victim,
+          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.victim) AS "victim_name",
+          km.killer,
+          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.killer) AS "killer_name",
+          km.solar_system_id,
+          (SELECT ss.solar_system_name FROM solarsystems ss WHERE ss.id = km.solar_system_id) AS "solar_system_name",
+          km.loss_type,
+          km.timestamp
+        FROM killmails km
+        JOIN smartcharacters sc ON sc.address = km.victim OR sc.address = km.killer
+        WHERE TRUE
+          AND sc.address = ${address}
+        ORDER BY
+          km.timestamp DESC
+        LIMIT 100
       ;`;
 
     return result;
@@ -154,7 +182,7 @@ class KillmailService {
           km.timestamp
         FROM killmails km
         ORDER BY
-          km."timestamp" DESC
+          km.timestamp DESC
         LIMIT 100
       ;`;
 
