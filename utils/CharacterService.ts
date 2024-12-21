@@ -36,7 +36,7 @@ class CharacterService {
         FROM smartcharacters sc
         JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
-        AND address = ${address}
+        AND sc.address = ${address}
       ;`;
 
     return result as SmartCharacter;
@@ -56,7 +56,29 @@ class CharacterService {
         FROM smartcharacters sc
         JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
-        AND tribe_id = ${tribeId}
+        AND sc.tribe_id = ${tribeId}
+      ;`;
+
+    return result as unknown as SmartCharacter[];
+  }
+
+  public async find(name: string): Promise<SmartCharacter[]> {
+    const result = await this
+      .db`
+        SELECT
+          sc.address,
+          sc.name,
+          ROUND(sc.eve_balance_wei / 1000000000000000000.0, 2) AS "eve_balance",
+          ROUND(sc.gas_balance_wei / 1000000000000000000.0, 2) AS "gas_balance",
+          sc.image,
+          t.name AS "tribe",
+          t.ticker_name
+        FROM smartcharacters sc
+        JOIN tribes t ON t.id = sc.tribe_id
+        WHERE TRUE
+        AND LOWER(sc.name) LIKE LOWER(${"%" + name + "%"})
+        ORDER BY
+          LOWER(sc.name) ASC
       ;`;
 
     return result as unknown as SmartCharacter[];
