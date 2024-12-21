@@ -100,6 +100,22 @@
     font-weight: 200;
   }
 
+  .labelLarge {
+    text-transform: uppercase;
+    font-family: 'Headline';
+    font-size: theme('fontSize.xs');
+    font-weight: normal;
+    letter-spacing: theme('letterSpacing.wider');
+  }
+
+  .labelSmall {
+    text-transform: uppercase;
+    font-family: 'Headline';
+    font-size: theme('fontSize.2xs');
+    font-weight: 700;
+    letter-spacing: theme('letterSpacing.wider');
+  }
+
   a {
     font-family: 'Headline';
     letter-spacing: theme('letterSpacing.widest');
@@ -112,6 +128,10 @@
   footer a {
     text-transform: uppercase;
     font-size: 14px;
+  }
+
+  nav a[aria-current="page"] {
+    color: theme('colors.orange');
   }
 
   .buttonContainer {
@@ -134,22 +154,13 @@
     }
   }
 
-  .labelLarge {
-    text-transform: uppercase;
-    font-family: 'Headline';
-    font-size: theme('fontSize.xs');
-    font-weight: normal;
-    letter-spacing: theme('letterSpacing.wider');
+  .bulletList {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    list-style-position: inside;
+    list-style-image: url('/images/bullet_list_image.svg');
   }
-
-  .labelSmall {
-    text-transform: uppercase;
-    font-family: 'Headline';
-    font-size: theme('fontSize.2xs');
-    font-weight: 700;
-    letter-spacing: theme('letterSpacing.wider');
-  }
-
 
 
   .bordered {

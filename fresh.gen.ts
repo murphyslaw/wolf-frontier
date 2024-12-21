@@ -8,11 +8,11 @@ import * as $_app from "./routes/_app.tsx";
 import * as $_layout from "./routes/_layout.tsx";
 import * as $characters_address_ from "./routes/characters/[address].tsx";
 import * as $characters_index from "./routes/characters/index.tsx";
-import * as $greet_name_ from "./routes/greet/[name].tsx";
 import * as $index from "./routes/index.tsx";
 import * as $legal_layout from "./routes/legal/_layout.tsx";
 import * as $legal_privacy_policy from "./routes/legal/privacy-policy.tsx";
 import * as $legal_terms_of_service from "./routes/legal/terms-of-service.tsx";
+import * as $news_index from "./routes/news/index.tsx";
 
 import type { Manifest } from "$fresh/server.ts";
 
@@ -24,11 +24,11 @@ const manifest = {
     "./routes/_layout.tsx": $_layout,
     "./routes/characters/[address].tsx": $characters_address_,
     "./routes/characters/index.tsx": $characters_index,
-    "./routes/greet/[name].tsx": $greet_name_,
     "./routes/index.tsx": $index,
     "./routes/legal/_layout.tsx": $legal_layout,
     "./routes/legal/privacy-policy.tsx": $legal_privacy_policy,
     "./routes/legal/terms-of-service.tsx": $legal_terms_of_service,
+    "./routes/news/index.tsx": $news_index,
   },
   islands: {},
   baseUrl: import.meta.url,
