@@ -4,6 +4,10 @@ const items = [
     label: "Characters",
   },
   {
+    href: "/tribes",
+    label: "Tribes",
+  },
+  {
     href: "/news",
     label: "News",
   },

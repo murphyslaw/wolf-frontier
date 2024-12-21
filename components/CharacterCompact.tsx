@@ -1,6 +1,6 @@
-import { characterService, SmartCharacter } from "../utils/CharacterService.ts";
+import { characterService, ICharacter } from "../utils/CharacterService.ts";
 
-export function CharacterCompact(props: { character: SmartCharacter }) {
+export function CharacterCompact(props: { character: ICharacter }) {
   const isOfficer = characterService.isOfficer(props.character.name);
 
   return (

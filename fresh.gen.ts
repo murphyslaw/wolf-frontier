@@ -9,13 +9,16 @@ import * as $_layout from "./routes/_layout.tsx";
 import * as $characters_address_ from "./routes/characters/[address].tsx";
 import * as $characters_layout from "./routes/characters/_layout.tsx";
 import * as $characters_index from "./routes/characters/index.tsx";
-import * as $characters_results from "./routes/characters/results.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $legal_layout from "./routes/legal/_layout.tsx";
 import * as $legal_privacy_policy from "./routes/legal/privacy-policy.tsx";
 import * as $legal_terms_of_service from "./routes/legal/terms-of-service.tsx";
 import * as $news_index from "./routes/news/index.tsx";
+import * as $tribes_id_ from "./routes/tribes/[id].tsx";
+import * as $tribes_layout from "./routes/tribes/_layout.tsx";
+import * as $tribes_index from "./routes/tribes/index.tsx";
 import * as $CharacterSearch from "./islands/CharacterSearch.tsx";
+import * as $TribeSearch from "./islands/TribeSearch.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -27,15 +30,18 @@ const manifest = {
     "./routes/characters/[address].tsx": $characters_address_,
     "./routes/characters/_layout.tsx": $characters_layout,
     "./routes/characters/index.tsx": $characters_index,
-    "./routes/characters/results.tsx": $characters_results,
     "./routes/index.tsx": $index,
     "./routes/legal/_layout.tsx": $legal_layout,
     "./routes/legal/privacy-policy.tsx": $legal_privacy_policy,
     "./routes/legal/terms-of-service.tsx": $legal_terms_of_service,
     "./routes/news/index.tsx": $news_index,
+    "./routes/tribes/[id].tsx": $tribes_id_,
+    "./routes/tribes/_layout.tsx": $tribes_layout,
+    "./routes/tribes/index.tsx": $tribes_index,
   },
   islands: {
     "./islands/CharacterSearch.tsx": $CharacterSearch,
+    "./islands/TribeSearch.tsx": $TribeSearch,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

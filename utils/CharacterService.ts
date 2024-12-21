@@ -1,7 +1,7 @@
 import postgres from "https://deno.land/x/postgresjs@v3.4.5/mod.js";
 import { sql } from "./db.ts";
 
-export interface SmartCharacter {
+export interface ICharacter {
   address: string;
   name: string;
   eve_balance: number;
@@ -22,9 +22,9 @@ class CharacterService {
     return result.count;
   }
 
-  public async get(address: string): Promise<SmartCharacter> {
+  public async get(address: string): Promise<ICharacter> {
     const [result] = await this
-      .db`
+      .db<ICharacter[]>`
         SELECT
           sc.address,
           sc.name,
@@ -39,12 +39,12 @@ class CharacterService {
         AND sc.address = ${address}
       ;`;
 
-    return result as SmartCharacter;
+    return result;
   }
 
-  public async listByTribe(tribeId: number): Promise<SmartCharacter[]> {
+  public async listByTribe(tribeId: number): Promise<ICharacter[]> {
     const result = await this
-      .db`
+      .db<ICharacter[]>`
         SELECT
           sc.address,
           sc.name,
@@ -59,12 +59,12 @@ class CharacterService {
         AND sc.tribe_id = ${tribeId}
       ;`;
 
-    return result as unknown as SmartCharacter[];
+    return result;
   }
 
-  public async find(name: string): Promise<SmartCharacter[]> {
+  public async find(name: string): Promise<ICharacter[]> {
     const result = await this
-      .db`
+      .db<ICharacter[]>`
         SELECT
           sc.address,
           sc.name,
@@ -81,7 +81,7 @@ class CharacterService {
           LOWER(sc.name) ASC
       ;`;
 
-    return result as unknown as SmartCharacter[];
+    return result;
   }
 
   public isOfficer(name: string) {

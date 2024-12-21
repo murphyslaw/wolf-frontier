@@ -2,19 +2,19 @@ interface Props {
   query: string;
 }
 
-export default function CharacterSearch({ query }: Props) {
+export default function TribeSearch({ query }: Props) {
   return (
     <form
-      action="/characters"
+      action="/tribes"
       method="GET"
       class="flex flex-row gap-x-4"
     >
       <div class="bordered p-1">
         <input
           type="search"
-          id="character-search"
+          id="tribe-search"
           name="query"
-          placeholder="Character name..."
+          placeholder="Tribe name or id..."
           value={query}
           class="text-white bg-transparent bodyMedium p-2"
         />

@@ -1,8 +1,7 @@
-import { characterService, SmartCharacter } from "../utils/CharacterService.ts";
+import { characterService, ICharacter } from "../utils/CharacterService.ts";
 import { EveToken } from "./EveToken.tsx";
-import { Tribe } from "./Tribe.tsx";
 
-export function Character(props: { character: SmartCharacter }) {
+export function Character(props: { character: ICharacter }) {
   const isOfficer = characterService.isOfficer(props.character.name);
 
   return (
@@ -35,10 +34,9 @@ export function Character(props: { character: SmartCharacter }) {
             {props.character.name}
           </h1>
 
-          <Tribe
-            name={props.character.tribe}
-            ticker={props.character.ticker_name}
-          />
+          <p class="bodyMedium text-orange">
+            {props.character.tribe} [{props.character.ticker_name}]
+          </p>
         </div>
 
         <EveToken balance={props.character.eve_balance} />
