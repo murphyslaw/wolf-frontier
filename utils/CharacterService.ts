@@ -6,6 +6,7 @@ export interface ICharacter {
   name: string;
   eve_balance: number;
   image: string;
+  tribe_id: number;
   tribe: string;
   ticker_name: string;
 }
@@ -31,6 +32,7 @@ class CharacterService {
           ROUND(sc.eve_balance_wei / 1000000000000000000.0, 2) AS "eve_balance",
           ROUND(sc.gas_balance_wei / 1000000000000000000.0, 2) AS "gas_balance",
           sc.image,
+          sc.tribe_id,
           t.name AS "tribe",
           t.ticker_name
         FROM smartcharacters sc
@@ -51,6 +53,7 @@ class CharacterService {
           ROUND(sc.eve_balance_wei / 1000000000000000000.0, 2) AS "eve_balance",
           ROUND(sc.gas_balance_wei / 1000000000000000000.0, 2) AS "gas_balance",
           sc.image,
+          sc.tribe_id,
           t.name AS "tribe",
           t.ticker_name
         FROM smartcharacters sc
@@ -71,6 +74,7 @@ class CharacterService {
           ROUND(sc.eve_balance_wei / 1000000000000000000.0, 2) AS "eve_balance",
           ROUND(sc.gas_balance_wei / 1000000000000000000.0, 2) AS "gas_balance",
           sc.image,
+          sc.tribe_id,
           t.name AS "tribe",
           t.ticker_name
         FROM smartcharacters sc

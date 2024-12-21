@@ -34,9 +34,12 @@ export function Character(props: { character: ICharacter }) {
             {props.character.name}
           </h1>
 
-          <p class="bodyMedium text-orange">
+          <a
+            href={`/tribes/${props.character.tribe_id}`}
+            class="bodyMedium text-orange hover:text-white"
+          >
             {props.character.tribe} [{props.character.ticker_name}]
-          </p>
+          </a>
         </div>
 
         <EveToken balance={props.character.eve_balance} />
