@@ -51,7 +51,9 @@ class TribeService {
 
   public async find(name: string | number): Promise<ITribe[]> {
     const where = isNaN(Number(name))
-      ? sql`AND LOWER(t.name) LIKE LOWER(${"%" + name + "%"})`
+      ? sql`AND LOWER(t.name) LIKE LOWER(${
+        "%" + name + "%"
+      }) OR LOWER(t.ticker_name) LIKE LOWER(${"%" + name + "%"})`
       : sql`AND t.id = ${name}`;
 
     const results = await this
