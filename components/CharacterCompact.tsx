@@ -6,7 +6,7 @@ export function CharacterCompact(props: { character: SmartCharacter }) {
   return (
     <a
       href={`/characters/${props.character.address}`}
-      class="bordered transition-all hover:text-orange hover:border-orange"
+      class="bordered transition-all hover:text-inherit hover:border-white"
     >
       {isOfficer && (
         <img
