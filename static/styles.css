@@ -188,4 +188,33 @@
   input::placeholder {
     color: theme("colors.grayLight");
   }
+
+  table {
+    border: 1px solid #fafae520;
+    background-color: theme('colors.black');
+
+    & th,
+    & td {
+      border-top: 1px solid #fafae520;
+      padding: 1rem;
+    }
+
+    & td+td,
+    & th+th {
+      border-left: 1px solid theme('colors.orange');
+      border-right: 1px solid theme('colors.orange');
+    }
+
+    & tr:first-child>th+th {
+      border-top: 1px solid theme('colors.orange');
+    }
+
+    & tr:last-child>td+td {
+      border-bottom: 1px solid theme('colors.orange');
+    }
+
+    & th {
+      color: theme('colors.grayLight');
+    }
+  }
 }

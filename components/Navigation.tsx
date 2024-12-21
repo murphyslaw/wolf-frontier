@@ -8,6 +8,10 @@ const items = [
     label: "Tribes",
   },
   {
+    href: "/killmails",
+    label: "Killmails",
+  },
+  {
     href: "/news",
     label: "News",
   },

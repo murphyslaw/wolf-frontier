@@ -10,6 +10,9 @@ import * as $characters_address_ from "./routes/characters/[address].tsx";
 import * as $characters_layout from "./routes/characters/_layout.tsx";
 import * as $characters_index from "./routes/characters/index.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $killmails_address_ from "./routes/killmails/[address].tsx";
+import * as $killmails_layout from "./routes/killmails/_layout.tsx";
+import * as $killmails_index from "./routes/killmails/index.tsx";
 import * as $legal_layout from "./routes/legal/_layout.tsx";
 import * as $legal_privacy_policy from "./routes/legal/privacy-policy.tsx";
 import * as $legal_terms_of_service from "./routes/legal/terms-of-service.tsx";
@@ -31,6 +34,9 @@ const manifest = {
     "./routes/characters/_layout.tsx": $characters_layout,
     "./routes/characters/index.tsx": $characters_index,
     "./routes/index.tsx": $index,
+    "./routes/killmails/[address].tsx": $killmails_address_,
+    "./routes/killmails/_layout.tsx": $killmails_layout,
+    "./routes/killmails/index.tsx": $killmails_index,
     "./routes/legal/_layout.tsx": $legal_layout,
     "./routes/legal/privacy-policy.tsx": $legal_privacy_policy,
     "./routes/legal/terms-of-service.tsx": $legal_terms_of_service,
