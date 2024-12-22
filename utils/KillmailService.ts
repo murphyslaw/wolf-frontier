@@ -80,7 +80,7 @@ class KillmailService {
         )
         SELECT
           ('/tribes/' || t.id) AS "href",
-          t.name,
+          COALESCE(t.name, t.id::text) AS "name",
           SUM(k.count) AS "count"
         FROM tribes t
         JOIN smartcharacters sc ON sc.tribe_id = t.id
