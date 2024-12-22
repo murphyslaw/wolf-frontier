@@ -6,4 +6,6 @@ export class Config {
   static DB_NAME: string = String(Deno.env.get("DB_NAME"));
   static DB_HOST: string = String(Deno.env.get("DB_HOST"));
   static DB_PORT: number = Number(Deno.env.get("DB_PORT"));
+  static RELEASE_ID: string = String(Deno.env.get("RELEASE_ID"));
+  static RELEASE_DATE: string = String(Deno.env.get("RELEASE_DATE"));
 }
