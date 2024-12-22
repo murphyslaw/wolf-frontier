@@ -38,7 +38,7 @@ export function Character(props: { character: ICharacter }) {
             href={`/tribes/${props.character.tribe_id}`}
             class="bodyMedium text-orange hover:text-white"
           >
-            {props.character.tribe} [{props.character.ticker_name}]
+            {props.character.tribe} [{props.character.ticker}]
           </a>
         </div>
 

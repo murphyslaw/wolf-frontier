@@ -4,7 +4,7 @@ import { sql } from "./db.ts";
 export interface ITribe {
   id: number;
   name: string;
-  ticker_name: string;
+  ticker: string;
   url: string;
   ceo: string;
   founder: string;
@@ -29,8 +29,8 @@ class TribeService {
       .db<ITribe[]>`
         SELECT
           t.id,
-          t.name,
-          t.ticker_name,
+          COALESCE(t.name, t.id::text) AS "name",
+          COALESCE(t.ticker, 'UNKNOWN') AS "ticker",
           t.url,
           t.ceo,
           t.founder,
@@ -53,7 +53,7 @@ class TribeService {
     const where = isNaN(Number(name))
       ? sql`AND LOWER(t.name) LIKE LOWER(${
         "%" + name + "%"
-      }) OR LOWER(t.ticker_name) LIKE LOWER(${"%" + name + "%"})`
+      }) OR LOWER(t.ticker) LIKE LOWER(${"%" + name + "%"})`
       : sql`AND t.id = ${name}`;
 
     const results = await this
@@ -69,7 +69,12 @@ class TribeService {
         )
 
         SELECT
-          t.*,
+          t.id,
+          COALESCE(t.name, t.id::text) AS "name",
+          COALESCE(t.ticker, 'UNKNOWN') AS "ticker",
+          t.url,
+          t.ceo,
+          t.founder,
           mv.count
         FROM tribes t
         JOIN members_view mv ON mv.tribe_id = t.id

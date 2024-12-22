@@ -8,7 +8,7 @@ export interface ICharacter {
   image: string;
   tribe_id: number;
   tribe: string;
-  ticker_name: string;
+  ticker: string;
 }
 
 class CharacterService {
@@ -33,10 +33,10 @@ class CharacterService {
           ROUND(sc.gas_balance_wei / 1000000000000000000.0, 2) AS "gas_balance",
           sc.image,
           sc.tribe_id,
-          t.name AS "tribe",
-          t.ticker_name
+          COALESCE(t.name, sc.tribe_id::text) AS "tribe",
+          COALESCE(t.ticker, 'UNKNOWN') AS "ticker"
         FROM smartcharacters sc
-        JOIN tribes t ON t.id = sc.tribe_id
+        LEFT JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
         AND sc.address = ${address}
       ;`;
@@ -54,10 +54,10 @@ class CharacterService {
           ROUND(sc.gas_balance_wei / 1000000000000000000.0, 2) AS "gas_balance",
           sc.image,
           sc.tribe_id,
-          t.name AS "tribe",
-          t.ticker_name
+          COALESCE(t.name, sc.tribe_id::text) AS "tribe",
+          COALESCE(t.ticker, 'UNKNOWN') AS "ticker"
         FROM smartcharacters sc
-        JOIN tribes t ON t.id = sc.tribe_id
+        LEFT JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
         AND sc.tribe_id = ${tribeId}
       ;`;
@@ -75,10 +75,10 @@ class CharacterService {
           ROUND(sc.gas_balance_wei / 1000000000000000000.0, 2) AS "gas_balance",
           sc.image,
           sc.tribe_id,
-          t.name AS "tribe",
-          t.ticker_name
+          COALESCE(t.name, sc.tribe_id::text) AS "tribe",
+          COALESCE(t.ticker, 'UNKNOWN') AS "ticker"
         FROM smartcharacters sc
-        JOIN tribes t ON t.id = sc.tribe_id
+        LEFT JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
         AND LOWER(sc.name) LIKE LOWER(${"%" + name + "%"})
         ORDER BY

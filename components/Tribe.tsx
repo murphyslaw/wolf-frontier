@@ -14,7 +14,7 @@ export function Tribe(props: { tribe: ITribe; members: ICharacter[] }) {
     <div class="flex flex-col gap-4 w-full">
       <div>
         <h2 class="headlineLarge">
-          {props.tribe.name} [{props.tribe.ticker_name}]
+          {props.tribe.name} [{props.tribe.ticker}]
         </h2>
 
         <label class="labelLarge text-grayLight">
