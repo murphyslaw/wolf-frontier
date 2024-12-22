@@ -8,12 +8,14 @@ export default async function CharacterDetailsPage(
   _req: Request,
   ctx: FreshContext,
 ) {
-  const character = await characterService.get(ctx.params.address);
-  const killmails = await killmailService.findByCharacter(character.address);
+  const address = ctx.params.address;
+  const character = await characterService.get(address);
 
   if (!character) {
     return ctx.renderNotFound();
   }
+
+  const killmails = await killmailService.findByCharacter(address);
 
   return (
     <>
