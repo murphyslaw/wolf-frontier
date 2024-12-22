@@ -11,6 +11,7 @@ export default function CharacterSearch({ query }: Props) {
     >
       <div class="bordered p-1">
         <input
+          autofocus
           type="search"
           id="character-search"
           name="query"

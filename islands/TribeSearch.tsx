@@ -11,6 +11,7 @@ export default function TribeSearch({ query }: Props) {
     >
       <div class="bordered p-1">
         <input
+          autofocus
           type="search"
           id="tribe-search"
           name="query"
