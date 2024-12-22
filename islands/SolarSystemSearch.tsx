@@ -3,13 +3,13 @@ interface Props {
   total: number;
 }
 
-export default function CharacterSearch({ query, total }: Props) {
+export default function SolarSystemSearch({ query, total }: Props) {
   return (
     <div class="flex flex-col gap-y-1">
       <p class="labelSmall text-grayLight">Total: {total}</p>
 
       <form
-        action="/characters"
+        action="/solarsystems"
         method="GET"
         class="flex flex-row gap-x-4"
       >
@@ -17,9 +17,9 @@ export default function CharacterSearch({ query, total }: Props) {
           <input
             autofocus
             type="search"
-            id="character-search"
+            id="solar-system-search"
             name="query"
-            placeholder="Character name..."
+            placeholder="System name or id..."
             value={query}
             class="text-white bg-transparent bodyMedium p-2"
           />

@@ -44,7 +44,7 @@ class CharacterService {
     return result;
   }
 
-  public async listByTribe(tribeId: number): Promise<ICharacter[]> {
+  public async findByTribe(tribeId: number): Promise<ICharacter[]> {
     const result = await this
       .db<ICharacter[]>`
         SELECT
@@ -59,7 +59,9 @@ class CharacterService {
         FROM smartcharacters sc
         LEFT JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
-        AND sc.tribe_id = ${tribeId}
+          AND sc.tribe_id = ${tribeId}
+        ORDER BY
+          sc.name ASC
       ;`;
 
     return result;

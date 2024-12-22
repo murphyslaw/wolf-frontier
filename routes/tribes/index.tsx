@@ -4,9 +4,6 @@ import { ITribe, tribeService } from "../../utils/TribeService.ts";
 
 interface Props {
   results: ITribe[];
-  query: string;
-  count: number;
-  total: number;
 }
 
 export const handler: Handlers<Props> = {
@@ -14,15 +11,13 @@ export const handler: Handlers<Props> = {
     const query = new URL(req.url).searchParams.get("query") || "";
 
     if (!query) {
+      const defaultResults = await tribeService.find("98000005");
+
       return ctx.render({
-        results: [],
-        query,
-        count: 0,
-        total: 0,
+        results: defaultResults,
       });
     }
 
-    const total = await tribeService.count();
     const results = await tribeService.find(query);
 
     if (results.length === 1) {
@@ -34,27 +29,16 @@ export const handler: Handlers<Props> = {
 
     return ctx.render({
       results,
-      query,
-      count: results.length,
-      total,
     });
   },
 };
 
 export default function Characters(
-  { data: { results, count, total } }: PageProps<Props>,
+  { data: { results } }: PageProps<Props>,
 ) {
-  if (!count) return;
-
   return (
-    <section class="flex flex-col gap-y-8 items-center">
-      <h2 class="displayLarge border-t border-b border-dashed border-orange text-orange p-4 text-center">
-        {count}/{total} Tribes found...
-      </h2>
-
-      <div class="flex flex-wrap gap-4">
-        {results.map((tribe) => <TribeCompact key={tribe.id} tribe={tribe} />)}
-      </div>
+    <section class="flex flex-col gap-4">
+      {results.map((tribe) => <TribeCompact key={tribe.id} tribe={tribe} />)}
     </section>
   );
 }

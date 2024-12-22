@@ -17,10 +17,14 @@ import * as $legal_layout from "./routes/legal/_layout.tsx";
 import * as $legal_privacy_policy from "./routes/legal/privacy-policy.tsx";
 import * as $legal_terms_of_service from "./routes/legal/terms-of-service.tsx";
 import * as $news_index from "./routes/news/index.tsx";
+import * as $solarsystems_id_ from "./routes/solarsystems/[id].tsx";
+import * as $solarsystems_layout from "./routes/solarsystems/_layout.tsx";
+import * as $solarsystems_index from "./routes/solarsystems/index.tsx";
 import * as $tribes_id_ from "./routes/tribes/[id].tsx";
 import * as $tribes_layout from "./routes/tribes/_layout.tsx";
 import * as $tribes_index from "./routes/tribes/index.tsx";
 import * as $CharacterSearch from "./islands/CharacterSearch.tsx";
+import * as $SolarSystemSearch from "./islands/SolarSystemSearch.tsx";
 import * as $TribeSearch from "./islands/TribeSearch.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
@@ -41,12 +45,16 @@ const manifest = {
     "./routes/legal/privacy-policy.tsx": $legal_privacy_policy,
     "./routes/legal/terms-of-service.tsx": $legal_terms_of_service,
     "./routes/news/index.tsx": $news_index,
+    "./routes/solarsystems/[id].tsx": $solarsystems_id_,
+    "./routes/solarsystems/_layout.tsx": $solarsystems_layout,
+    "./routes/solarsystems/index.tsx": $solarsystems_index,
     "./routes/tribes/[id].tsx": $tribes_id_,
     "./routes/tribes/_layout.tsx": $tribes_layout,
     "./routes/tribes/index.tsx": $tribes_index,
   },
   islands: {
     "./islands/CharacterSearch.tsx": $CharacterSearch,
+    "./islands/SolarSystemSearch.tsx": $SolarSystemSearch,
     "./islands/TribeSearch.tsx": $TribeSearch,
   },
   baseUrl: import.meta.url,

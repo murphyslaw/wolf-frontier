@@ -9,7 +9,8 @@ export interface ITribe {
   ceo: string;
   founder: string;
   count: number;
-  solar_system_name: number;
+  solar_system_name: string;
+  solar_system_id: number;
 }
 
 class TribeService {
@@ -35,6 +36,7 @@ class TribeService {
           t.url,
           t.ceo,
           t.founder,
+          ss.id AS "solar_system_id",
           COALESCE(ss.solar_system_name, ss.id::text) AS "solar_system_name",
           (
             SELECT
@@ -50,6 +52,36 @@ class TribeService {
       ;`;
 
     return result;
+  }
+
+  public async findByHeadquarters(solarSystemId: number): Promise<ITribe[]> {
+    const results = await this
+      .db<ITribe[]>`
+        WITH
+        members_view AS (
+          SELECT
+            sc.tribe_id,
+            COUNT(*) AS "count"
+          FROM smartcharacters sc
+          GROUP BY
+            sc.tribe_id
+        )
+
+        SELECT
+          t.id,
+          COALESCE(t.name, t.id::text) AS "name",
+          COALESCE(t.ticker, 'UNKNOWN') AS "ticker",
+          t.url,
+          t.ceo,
+          t.founder,
+          mv.count
+        FROM tribes t
+        JOIN members_view mv ON mv.tribe_id = t.id
+        WHERE TRUE
+          AND t.headquarters = ${solarSystemId}
+      ;`;
+
+    return results;
   }
 
   public async find(name: string | number): Promise<ITribe[]> {
@@ -83,6 +115,8 @@ class TribeService {
         JOIN members_view mv ON mv.tribe_id = t.id
         WHERE TRUE
           ${where}
+        ORDER BY
+          name ASC
       ;`;
 
     return results;

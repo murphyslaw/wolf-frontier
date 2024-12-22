@@ -1,9 +1,12 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import { CharacterCompact } from "../../components/CharacterCompact.tsx";
-import { characterService, ICharacter } from "../../utils/CharacterService.ts";
+import { SolarSystemCompact } from "../../components/SolarSystemCompact.tsx";
+import {
+  ISolarSystem,
+  solarSystemService,
+} from "../../utils/SolarSystemService.ts";
 
 interface Props {
-  results: ICharacter[];
+  results: ISolarSystem[];
 }
 
 export const handler: Handlers<Props> = {
@@ -11,19 +14,17 @@ export const handler: Handlers<Props> = {
     const query = new URL(req.url).searchParams.get("query") || "";
 
     if (!query) {
-      const defaultResults = await characterService.findByTribe(98000005);
-
       return ctx.render({
-        results: defaultResults,
+        results: await solarSystemService.find("H.59P.E21"),
       });
     }
 
-    const results = await characterService.find(query);
+    const results = await solarSystemService.find(query);
 
     if (results.length === 1) {
       return new Response("", {
         status: 307,
-        headers: { Location: `/characters/${results[0].address}` },
+        headers: { Location: `/solarsystems/${results[0].id}` },
       });
     }
 
@@ -33,13 +34,13 @@ export const handler: Handlers<Props> = {
   },
 };
 
-export default function Characters(
+export default function SolarSystemsOverviewPage(
   { data: { results } }: PageProps<Props>,
 ) {
   return (
     <section class="flex flex-wrap gap-4">
-      {results.map((character) => (
-        <CharacterCompact key={character.address} character={character} />
+      {results.map((solarSystem) => (
+        <SolarSystemCompact key={solarSystem.id} solarSystem={solarSystem} />
       ))}
     </section>
   );

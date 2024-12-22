@@ -11,7 +11,7 @@ export default async function TribeDetailsPage(
 ) {
   const tribeId = Number(ctx.params.id);
   const tribe = await tribeService.get(tribeId);
-  const members = await characterService.listByTribe(tribeId);
+  const members = await characterService.findByTribe(tribeId);
   const killmails = await killmailService.findByTribe(tribeId);
 
   if (!tribe) {

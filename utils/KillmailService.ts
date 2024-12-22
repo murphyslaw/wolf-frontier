@@ -188,6 +188,30 @@ class KillmailService {
 
     return result;
   }
+
+  public async findBySolarSystem(solarSystemId: number): Promise<IKillMail[]> {
+    const result = await this
+      .db<IKillMail[]>`
+        SELECT
+          km.id,
+          km.victim,
+          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.victim) AS "victim_name",
+          km.killer,
+          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.killer) AS "killer_name",
+          km.solar_system_id,
+          (SELECT ss.solar_system_name FROM solarsystems ss WHERE ss.id = km.solar_system_id) AS "solar_sytem_name",
+          km.loss_type,
+          km.timestamp
+        FROM killmails km
+        WHERE TRUE
+          AND km.solar_system_id = ${solarSystemId}
+        ORDER BY
+          km.timestamp DESC
+        LIMIT 100
+      ;`;
+
+    return result;
+  }
 }
 
 export const killmailService = new KillmailService(sql);

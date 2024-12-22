@@ -4,14 +4,14 @@ export function TribeCompact(
   props: { tribe: ITribe },
 ) {
   return (
-    <div class="flex flex-col w-full">
-      <a href={`/tribes/${props.tribe.id}`} class="headlineLarge block">
+    <p class="flex flex-col w-full">
+      <a href={`/tribes/${props.tribe.id}`} class="bodyMedium block">
         {props.tribe.name} [{props.tribe.ticker}]
       </a>
 
-      <label class="labelLarge text-grayLight">
+      <span class="labelLarge text-grayLight">
         Member Count: {props.tribe.count}
-      </label>
-    </div>
+      </span>
+    </p>
   );
 }

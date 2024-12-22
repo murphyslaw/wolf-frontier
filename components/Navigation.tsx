@@ -12,6 +12,10 @@ const items = [
     label: "Killmails",
   },
   {
+    href: "/solarsystems",
+    label: "Solar Systems",
+  },
+  {
     href: "/news",
     label: "News",
   },

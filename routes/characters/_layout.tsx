@@ -1,8 +1,10 @@
-import { PageProps } from "$fresh/server.ts";
+import { defineLayout } from "$fresh/src/server/defines.ts";
 import CharacterSearch from "../../islands/CharacterSearch.tsx";
+import { characterService } from "../../utils/CharacterService.ts";
 
-export default function Layout(props: PageProps) {
-  const query = new URL(props.url).searchParams.get("query") || "";
+export default defineLayout(async (req, ctx) => {
+  const query = new URL(req.url).searchParams.get("query") || "";
+  const total = await characterService.count();
 
   return (
     <div class="flex flex-col gap-y-8">
@@ -17,9 +19,9 @@ export default function Layout(props: PageProps) {
         </h2>
       </header>
 
-      <CharacterSearch query={query} />
+      <CharacterSearch query={query} total={total} />
 
-      <props.Component />
+      <ctx.Component />
     </div>
   );
-}
+});

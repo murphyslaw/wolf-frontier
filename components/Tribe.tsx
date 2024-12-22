@@ -52,7 +52,13 @@ export function Tribe(props: { tribe: ITribe; members: ICharacter[] }) {
 
             {props.tribe.solar_system_name && (
               <li>
-                SOLAR SYSTEM: {props.tribe.solar_system_name}
+                SOLAR SYSTEM:{" "}
+                <a
+                  href={`/solarsystems/${props.tribe.solar_system_id}`}
+                  class="bodyMedium"
+                >
+                  {props.tribe.solar_system_name}
+                </a>
               </li>
             )}
 
