@@ -9,6 +9,7 @@ export interface ITribe {
   ceo: string;
   founder: string;
   count: number;
+  solar_system_name: number;
 }
 
 class TribeService {
@@ -34,6 +35,7 @@ class TribeService {
           t.url,
           t.ceo,
           t.founder,
+          COALESCE(ss.solar_system_name, ss.id::text) AS "solar_system_name",
           (
             SELECT
               COUNT(*) AS "count"
@@ -42,6 +44,7 @@ class TribeService {
               AND sc.tribe_id = t.id
           ) AS "count"
         FROM tribes t
+        LEFT JOIN solarsystems ss ON ss.id = t.headquarters
         WHERE TRUE
           AND t.id = ${id}
       ;`;

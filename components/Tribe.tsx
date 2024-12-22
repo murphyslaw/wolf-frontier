@@ -50,6 +50,12 @@ export function Tribe(props: { tribe: ITribe; members: ICharacter[] }) {
               </li>
             )}
 
+            {props.tribe.solar_system_name && (
+              <li>
+                SOLAR SYSTEM: {props.tribe.solar_system_name}
+              </li>
+            )}
+
             {props.tribe.url && (
               <li>
                 URL: <a href={props.tribe.url}>{props.tribe.url}</a>
