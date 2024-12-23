@@ -13,10 +13,10 @@ export default function Home() {
     >
       <div class="max-w-[30vw] flex flex-col gap-y-10">
         <h1 class="displayLarge">
-          <span class="text-orange">W</span>andering<br />
-          <span class="text-orange">O</span>rder of the<br />
-          <span class="text-orange">L</span>ast<br />
-          <span class="text-orange">F</span>rontier
+          <span class="text-orange-600">W</span>andering<br />
+          <span class="text-orange-600">O</span>rder of the<br />
+          <span class="text-orange-600">L</span>ast<br />
+          <span class="text-orange-600">F</span>rontier
         </h1>
 
         <p class="bodyMedium">

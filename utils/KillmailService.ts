@@ -177,7 +177,7 @@ class KillmailService {
           km.killer,
           (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.killer) AS "killer_name",
           km.solar_system_id,
-          (SELECT ss.solar_system_name FROM solarsystems ss WHERE ss.id = km.solar_system_id) AS "solar_sytem_name",
+          (SELECT ss.solar_system_name FROM solarsystems ss WHERE ss.id = km.solar_system_id) AS "solar_system_name",
           km.loss_type,
           km.timestamp
         FROM killmails km

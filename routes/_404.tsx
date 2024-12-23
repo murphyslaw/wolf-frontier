@@ -10,9 +10,9 @@ export default function Error404() {
 
       <>
         <h1 class="displayLarge">
-          <span class="text-orange">P</span>age{" "}
-          <span class="text-orange">n</span>ot{" "}
-          <span class="text-orange">f</span>ound
+          <span class="text-orange-600">P</span>age{" "}
+          <span class="text-orange-600">n</span>ot{" "}
+          <span class="text-orange-600">f</span>ound
         </h1>
 
         <p class="bodyMedium">

@@ -7,7 +7,7 @@ interface Props {
   topCharacters: ITopKills[];
   topTribes: ITopKills[];
   topSolarSystems: ITopKills[];
-  latest: IKillMail[];
+  killmails: IKillMail[];
 }
 
 export const handler: Handlers<Props> = {
@@ -15,19 +15,19 @@ export const handler: Handlers<Props> = {
     const topCharacters = await killmailService.topCharacters();
     const topTribes = await killmailService.topTribes();
     const topSolarSystems = await killmailService.topSolarSystems();
-    const latest = await killmailService.latest();
+    const killmails = await killmailService.latest();
 
     return ctx.render({
       topCharacters,
       topTribes,
       topSolarSystems,
-      latest,
+      killmails,
     });
   },
 };
 
 export default function KillmailsOverviewPage(
-  { data: { topCharacters, topTribes, topSolarSystems, latest } }: PageProps<
+  { data: { topCharacters, topTribes, topSolarSystems, killmails } }: PageProps<
     Props
   >,
 ) {
@@ -41,7 +41,11 @@ export default function KillmailsOverviewPage(
         <TopKills results={topSolarSystems} category="Solar System" />
       </div>
 
-      <Killmails killmails={latest} />
+      <div class="flex flex-col gap-y-8">
+        <h2 class="headlineLarge">Most recent kills ({killmails.length})</h2>
+
+        <Killmails killmails={killmails} />
+      </div>
     </section>
   );
 }

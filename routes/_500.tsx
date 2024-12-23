@@ -10,9 +10,9 @@ export default function Error404() {
 
       <>
         <h1 class="displayLarge">
-          <span class="text-orange">I</span>nternal{" "}
-          <span class="text-orange">S</span>erver{" "}
-          <span class="text-orange">E</span>rror
+          <span class="text-orange-600">I</span>nternal{" "}
+          <span class="text-orange-600">S</span>erver{" "}
+          <span class="text-orange-600">E</span>rror
         </h1>
 
         <p class="bodyMedium">

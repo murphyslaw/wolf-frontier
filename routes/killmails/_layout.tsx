@@ -5,7 +5,7 @@ export default function Layout(props: PageProps) {
     <div class="flex flex-col gap-y-8">
       <header>
         <h1 class="displayLarge">
-          <span class="text-orange">K</span>illmails
+          <span class="text-orange-600">K</span>illmails
         </h1>
 
         <h2 class="headlineMedium uppercase text-white">

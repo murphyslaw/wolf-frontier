@@ -10,7 +10,7 @@ export default defineLayout(async (req, ctx) => {
     <div class="flex flex-col gap-y-8">
       <header>
         <h1 class="displayLarge">
-          <span class="text-orange">T</span>ribes
+          <span class="text-orange-600">T</span>ribes
         </h1>
 
         <h2 class="headlineMedium uppercase text-white">
