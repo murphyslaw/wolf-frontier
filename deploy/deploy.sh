@@ -5,7 +5,7 @@ sed -i '' -e "s/RELEASE_DATE=.*/RELEASE_DATE='$(date -u "+%Y-%m-%d %H:%M")'/g" .
 
 source .env
 
-docker build --build-arg GIT_REVISION=$(git rev-parse HEAD) --platform linux/amd64 --tag $IMAGE_NAME .
+docker build --no-cache --build-arg GIT_REVISION=$(git rev-parse HEAD) --platform linux/amd64 --tag $IMAGE_NAME .
 docker push $IMAGE_NAME
 
 ssh $SERVER_USER@$SERVER_HOST "cd $SERVER_WORK_DIR && sed -i -e \"s/RELEASE_ID=.*/RELEASE_ID='$RELEASE_ID'/g\" .env && exit"
