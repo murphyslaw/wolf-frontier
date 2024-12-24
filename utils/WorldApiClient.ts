@@ -1,4 +1,6 @@
+import { EF_SmartCharacter } from "./CharacterService.ts";
 import { RequestService } from "./RequestService.ts";
+import { EF_SmartAssembly } from "./SmartAssembliesService.ts";
 
 interface IHealthResponse {
   ok: boolean;
@@ -18,6 +20,36 @@ class WorldApiClient {
     } catch (error) {
       console.error(error);
       return false;
+    }
+  }
+
+  public async smartcharacter(
+    address: string,
+  ): Promise<EF_SmartCharacter | null> {
+    try {
+      const response = await this.get<EF_SmartCharacter>(
+        `smartcharacters/${address}`,
+      );
+
+      return response.parsedBody || null;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  public async smartassembly(
+    id: string,
+  ): Promise<EF_SmartAssembly | null> {
+    try {
+      const response = await this.get<EF_SmartAssembly>(
+        `smartassemblies/${id}`,
+      );
+
+      return response.parsedBody || null;
+    } catch (error) {
+      console.error(error);
+      return null;
     }
   }
 
