@@ -1,4 +1,10 @@
-export function Footer() {
+import { OnlineBadgeIndicator } from "./OnlineBadgeIndicator.tsx";
+
+interface Props {
+  worldApiStatus: boolean;
+}
+
+export function Footer({ worldApiStatus }: Props) {
   return (
     <footer class="h-min-60 px-12 py-16 bg-gray text-white">
       <div class="grid grid-cols-4 justify-between">
@@ -59,6 +65,15 @@ export function Footer() {
           <li>
             <a href="https://www.ccpgames.com" class="bodyMedium">
               CCP Games
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="https://blockchain-gateway-stillness.live.tech.evefrontier.com/docs/doc.json"
+              class="bodyMedium"
+            >
+              World API <OnlineBadgeIndicator online={worldApiStatus} />
             </a>
           </li>
         </ul>

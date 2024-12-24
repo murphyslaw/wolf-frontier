@@ -1,8 +1,11 @@
-import { PageProps } from "$fresh/server.ts";
+import { defineLayout } from "$fresh/server.ts";
 import { Footer } from "../components/Footer.tsx";
 import { Header } from "../components/Header.tsx";
+import { worldApiService } from "../utils/WorldApiService.ts";
 
-export default function Layout(props: PageProps) {
+export default defineLayout(async (_req, ctx) => {
+  const online = await worldApiService.online();
+
   return (
     <>
       <div
@@ -12,11 +15,11 @@ export default function Layout(props: PageProps) {
         <Header />
 
         <div class="min-h-screen">
-          <props.Component />
+          <ctx.Component />
         </div>
       </div>
 
-      <Footer />
+      <Footer worldApiStatus={online} />
     </>
   );
-}
+});
