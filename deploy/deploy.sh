@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 sed -i '' -e "s/RELEASE_ID=.*/RELEASE_ID='$(git rev-parse --short HEAD)'/g" .env
 sed -i '' -e "s/RELEASE_DATE=.*/RELEASE_DATE='$(date -u "+%Y-%m-%d %H:%M")'/g" .env
 
