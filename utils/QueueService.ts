@@ -9,8 +9,13 @@ export class QueueService {
 
   constructor(private queue: Deno.Kv) {}
 
-  public register(consumer: Consumer) {
+  public register(consumer: Consumer): void {
     this.consumers.push(consumer);
+
+    // skip listening for new messages in build mode
+    // workaround for long-running tasks during build
+    // see https://github.com/denoland/fresh/issues/2240
+    if (Deno.args.includes("build")) return;
 
     this.queue.listenQueue(async (msg: unknown) => {
       let consumed = false;
