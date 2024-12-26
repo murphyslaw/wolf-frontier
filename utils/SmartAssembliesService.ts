@@ -24,9 +24,8 @@ export interface ISmartAssembly {
   updated_at: string;
 }
 
-export class SmartAssembliesService {
-  static REFRESH_FREQUENCY = 5 * 60 * 1000; // milliseconds
-  static MESSAGE_TYPE = "SmartAssembly";
+class SmartAssembliesService {
+  static REFRESH_FREQUENCY = 10 * 60 * 1000; // milliseconds
 
   constructor(private db: ISql, private queue: QueueService) {
     this.queue.register(new SmartAssemblyMessageConsumer(db));
@@ -199,10 +198,9 @@ export class SmartAssembliesService {
     for (const smartAssembly of smartAssemblies) {
       if (this.isStale(smartAssembly)) {
         await this.queue.enqueue(
-          {
-            type: SmartAssembliesService.MESSAGE_TYPE,
-            id: smartAssembly.smart_assembly_id,
-          },
+          SmartAssemblyMessageConsumer.createMessage(
+            smartAssembly.smart_assembly_id,
+          ),
         );
       }
     }

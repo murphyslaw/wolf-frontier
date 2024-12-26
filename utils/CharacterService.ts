@@ -13,9 +13,8 @@ export interface ICharacter {
   updated_at: number;
 }
 
-export class CharacterService {
-  static REFRESH_FREQUENCY = 5 * 60 * 1000; // milliseconds
-  static MESSAGE_TYPE = "Character";
+class CharacterService {
+  static REFRESH_FREQUENCY = 10 * 60 * 1000; // milliseconds
 
   constructor(private db: ISql, private queue: QueueService) {
     this.queue.register(new CharacterMessageConsumer(db));
@@ -117,7 +116,7 @@ export class CharacterService {
     for (const character of characters) {
       if (this.isStale(character)) {
         await this.queue.enqueue(
-          { type: CharacterService.MESSAGE_TYPE, address: character.address },
+          CharacterMessageConsumer.createMessage(character.address),
         );
       }
     }

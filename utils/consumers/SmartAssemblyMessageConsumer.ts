@@ -1,11 +1,19 @@
 import { ISql } from "../db.ts";
 import { Consumer } from "../QueueService.ts";
-import { SmartAssembliesService } from "../SmartAssembliesService.ts";
 import { DB_SmartAssembly } from "../types/DatabaseTypes.ts";
 import { ISmartAssemblyMessage } from "../types/MessageTypes.ts";
 import { worldApiClient } from "../WorldApiClient.ts";
 
 export class SmartAssemblyMessageConsumer implements Consumer {
+  static MESSAGE_TYPE: ISmartAssemblyMessage["type"] = "SmartAssembly";
+
+  static createMessage(id: string): ISmartAssemblyMessage {
+    return {
+      type: this.MESSAGE_TYPE,
+      id,
+    };
+  }
+
   constructor(private db: ISql) {}
 
   public async consume(msg: unknown): Promise<boolean> {
@@ -81,6 +89,6 @@ export class SmartAssemblyMessageConsumer implements Consumer {
   private isMessageType(object: unknown): object is ISmartAssemblyMessage {
     return (object as ISmartAssemblyMessage)?.type !== undefined &&
       (object as ISmartAssemblyMessage).type ===
-        SmartAssembliesService.MESSAGE_TYPE;
+        SmartAssemblyMessageConsumer.MESSAGE_TYPE;
   }
 }

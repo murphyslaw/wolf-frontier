@@ -1,4 +1,3 @@
-import { CharacterService } from "../CharacterService.ts";
 import { ISql } from "../db.ts";
 import { Consumer } from "../QueueService.ts";
 import { DB_SmartCharacter } from "../types/DatabaseTypes.ts";
@@ -6,6 +5,12 @@ import { ICharacterMessage } from "../types/MessageTypes.ts";
 import { worldApiClient } from "../WorldApiClient.ts";
 
 export class CharacterMessageConsumer implements Consumer {
+  static MESSAGE_TYPE: ICharacterMessage["type"] = "Character";
+
+  static createMessage(address: string): ICharacterMessage {
+    return { type: this.MESSAGE_TYPE, address };
+  }
+
   constructor(private db: ISql) {}
 
   public async consume(msg: unknown): Promise<boolean> {
@@ -47,6 +52,7 @@ export class CharacterMessageConsumer implements Consumer {
 
   private isMessageType(object: unknown): object is ICharacterMessage {
     return (object as ICharacterMessage)?.type !== undefined &&
-      (object as ICharacterMessage).type === CharacterService.MESSAGE_TYPE;
+      (object as ICharacterMessage).type ===
+        CharacterMessageConsumer.MESSAGE_TYPE;
   }
 }
