@@ -38,3 +38,12 @@ export interface DB_SmartAssembly {
   storage_capacity: string;
   used_capacity: string;
 }
+
+export interface DB_Killmail {
+  id: number;
+  solar_system_id: number;
+  loss_type: string;
+  victim: string;
+  killer: string;
+  timestamp: number;
+}

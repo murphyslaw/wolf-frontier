@@ -1,6 +1,7 @@
 import { RequestService } from "./RequestService.ts";
 import {
   EF_Health,
+  EF_Killmail,
   EF_SmartAssembly,
   EF_SmartCharacter,
 } from "./types/WorldApiTypes.ts";
@@ -44,6 +45,17 @@ class WorldApiClient {
       const response = await this.get<EF_SmartAssembly>(
         `smartassemblies/${id}`,
       );
+
+      return response.parsedBody || null;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  public async killmails(): Promise<EF_Killmail[] | null> {
+    try {
+      const response = await this.get<EF_Killmail[]>("killmails");
 
       return response.parsedBody || null;
     } catch (error) {

@@ -60,3 +60,17 @@ export interface EF_SmartAssembly {
     ephemeralInventoryList: string[];
   };
 }
+
+export interface EF_Killmail {
+  solar_system_id: number;
+  loss_type: string;
+  victim: {
+    address: string;
+    name: string;
+  };
+  killer: {
+    address: string;
+    name: string;
+  };
+  timestamp: number;
+}

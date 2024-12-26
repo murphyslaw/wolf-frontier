@@ -10,5 +10,8 @@ import "$std/dotenv/load.ts";
 import { start } from "$fresh/server.ts";
 import config from "./fresh.config.ts";
 import manifest from "./fresh.gen.ts";
+import { cronService } from "./utils/CronService.ts";
+
+cronService.init();
 
 await start(manifest, config);

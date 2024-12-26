@@ -7,3 +7,7 @@ export interface ISmartAssemblyMessage {
   type: "SmartAssembly";
   id: string;
 }
+
+export interface IKillmailsMessage {
+  type: "Killmails";
+}

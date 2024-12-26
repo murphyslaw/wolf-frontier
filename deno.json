@@ -10,7 +10,7 @@
     "update": "deno run --allow-all --reload https://fresh.deno.dev/update .",
     "deploy": "./deploy/deploy.sh"
   },
-  "unstable": ["kv"],
+  "unstable": ["kv", "cron"],
   "lint": { "rules": { "tags": ["fresh", "recommended"] } },
   "exclude": ["**/_fresh/*"],
   "imports": {
