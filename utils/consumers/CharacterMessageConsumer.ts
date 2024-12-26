@@ -3,6 +3,7 @@ import { Consumer } from "../QueueService.ts";
 import { DB_SmartCharacter } from "../types/DatabaseTypes.ts";
 import { ICharacterMessage } from "../types/MessageTypes.ts";
 import { worldApiClient } from "../WorldApiClient.ts";
+import { SmartAssemblyMessageConsumer } from "./SmartAssemblyMessageConsumer.ts";
 
 export class CharacterMessageConsumer implements Consumer {
   static MESSAGE_TYPE: ICharacterMessage["type"] = "Character";
@@ -46,6 +47,15 @@ export class CharacterMessageConsumer implements Consumer {
           image = EXCLUDED.image,
           tribe_id = EXCLUDED.tribe_id
     `;
+
+    const smartAssemblyMessageConsumer = new SmartAssemblyMessageConsumer(
+      this.db,
+    );
+    for (const smartAssembly of data.smartAssemblies) {
+      smartAssemblyMessageConsumer.consume(
+        SmartAssemblyMessageConsumer.createMessage(smartAssembly.id),
+      );
+    }
 
     return true;
   }
