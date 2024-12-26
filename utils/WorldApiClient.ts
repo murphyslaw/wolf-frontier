@@ -18,7 +18,7 @@ class WorldApiClient {
 
       return response.status === 200 && Boolean(response.parsedBody?.ok);
     } catch (error) {
-      console.error(error);
+      console.error("could not fetch health", error);
       return false;
     }
   }
@@ -33,7 +33,7 @@ class WorldApiClient {
 
       return response.parsedBody || null;
     } catch (error) {
-      console.error(error);
+      console.error("could not fetch smart character", address, error);
       return null;
     }
   }
@@ -48,7 +48,7 @@ class WorldApiClient {
 
       return response.parsedBody || null;
     } catch (error) {
-      console.error(error);
+      console.error("could not fetch smart assembly", id, error);
       return null;
     }
   }
@@ -59,7 +59,7 @@ class WorldApiClient {
 
       return response.parsedBody || null;
     } catch (error) {
-      console.error(error);
+      console.error("could not fetch killmails", error);
       return null;
     }
   }
