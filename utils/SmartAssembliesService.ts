@@ -1,7 +1,6 @@
-import postgres from "https://deno.land/x/postgresjs@v3.4.5/mod.js";
-import { sql } from "./db.ts";
-import { Consumer, QueueService, queueService } from "./QueueService.ts";
-import { worldApiClient } from "./WorldApiClient.ts";
+import { SmartAssemblyMessageConsumer } from "./consumers/SmartAssemblyMessageConsumer.ts";
+import { ISql, sql } from "./db.ts";
+import { QueueService, queueService } from "./QueueService.ts";
 
 export interface ISmartAssembly {
   smart_assembly_id: string;
@@ -25,171 +24,11 @@ export interface ISmartAssembly {
   updated_at: string;
 }
 
-export interface EF_SmartAssembly {
-  id: string;
-  itemId: string;
-  chainId: number;
-  stateId: number;
-  state: string;
-  isOnline: boolean;
-  solarSystem: {
-    solarSystemId: number;
-    solarSystemName: string;
-    location: {
-      x: string;
-      y: string;
-      z: string;
-    };
-  };
-  region: string;
-  name: string;
-  ownerId: string;
-  ownerName: string;
-  typeId: number;
-  assemblyType: string;
-  description: string;
-  dappUrl: string;
-  isValid: boolean;
-  anchoredAtTime: string;
-  location: {
-    x: string;
-    y: string;
-    z: string;
-  };
-  floorPrice: string;
-  fuel: {
-    fuelAmount: number;
-    fuelConsumptionPerMin: number;
-    fuelMaxCapacity: number;
-    fuelUnitVolume: number;
-  };
-  inventory?: {
-    storageCapacity: string;
-    usedCapacity: string;
-    storageItems: string[];
-    ephemeralInventoryList: string[];
-  };
-}
-
-interface DB_SmartAssembly {
-  smart_assembly_id: string;
-  item_id: string;
-  chain_id: number;
-  state_id: number;
-  state: string;
-  is_online: boolean;
-  solar_system_id: number;
-  region: string;
-  name: string;
-  owner_id: string;
-  type_id: number;
-  assembly_type: string;
-  description: string;
-  dapp_url: string;
-  is_valid: boolean;
-  anchored_at_time: string;
-  x: string;
-  y: string;
-  z: string;
-  floor_price: string;
-  fuel_amount: number;
-  fuel_consumption_per_min: number;
-  fuel_max_capacity: number;
-  fuel_unit_volume: number;
-  storage_capacity: string;
-  used_capacity: string;
-}
-
-interface ISmartAssemblyMessage {
-  type: "SmartAssembly";
-  id: string;
-}
-
-export class SmartAssemblyMessageConsumer implements Consumer {
-  constructor(private db: postgres.Sql) {}
-
-  public async consume(msg: unknown): Promise<boolean> {
-    if (!this.isMessageType(msg)) return false;
-
-    const data = await worldApiClient.smartassembly(msg.id);
-
-    if (!data) {
-      // message was consumed
-      return true;
-    }
-
-    const entry: DB_SmartAssembly = {
-      smart_assembly_id: data.id,
-      item_id: data.itemId,
-      chain_id: data.chainId,
-      state_id: data.stateId,
-      state: data.state,
-      is_online: data.isOnline,
-      solar_system_id: data.solarSystem.solarSystemId,
-      name: data.name,
-      owner_id: data.ownerId,
-      type_id: data.typeId,
-      assembly_type: data.assemblyType,
-      x: data.location.x,
-      y: data.location.y,
-      z: data.location.z,
-      region: data.region,
-      description: data.description,
-      dapp_url: data.dappUrl,
-      is_valid: data.isValid,
-      anchored_at_time: data.anchoredAtTime,
-      floor_price: data.floorPrice,
-      fuel_amount: data.fuel.fuelAmount,
-      fuel_consumption_per_min: data.fuel.fuelConsumptionPerMin,
-      fuel_max_capacity: data.fuel.fuelMaxCapacity,
-      fuel_unit_volume: data.fuel.fuelUnitVolume,
-      storage_capacity: data.inventory?.storageCapacity || "",
-      used_capacity: data.inventory?.usedCapacity || "",
-    };
-
-    await this.db`
-      INSERT INTO smartassemblies ${sql(entry)}
-      ON CONFLICT (smart_assembly_id) DO UPDATE
-        SET state = EXCLUDED.state,
-            is_online = EXCLUDED.is_online,
-            state_id = EXCLUDED.state_id,
-            solar_system_id = EXCLUDED.solar_system_id,
-            name = EXCLUDED.name,
-            owner_id = EXCLUDED.owner_id,
-            type_id = EXCLUDED.type_id,
-            assembly_type = EXCLUDED.assembly_type,
-            x = EXCLUDED.x,
-            y = EXCLUDED.y,
-            z = EXCLUDED.z,
-            region = EXCLUDED.region,
-            description = EXCLUDED.description,
-            dapp_url = EXCLUDED.dapp_url,
-            is_valid = EXCLUDED.is_valid,
-            anchored_at_time = EXCLUDED.anchored_at_time,
-            floor_price = EXCLUDED.floor_price,
-            fuel_amount = EXCLUDED.fuel_amount,
-            fuel_consumption_per_min = EXCLUDED.fuel_consumption_per_min,
-            fuel_max_capacity = EXCLUDED.fuel_max_capacity,
-            fuel_unit_volume = EXCLUDED.fuel_unit_volume,
-            storage_capacity = EXCLUDED.storage_capacity,
-            used_capacity = EXCLUDED.used_capacity
-    `;
-
-    return true;
-  }
-
-  private isMessageType(object: unknown): object is ISmartAssemblyMessage {
-    return (object as ISmartAssemblyMessage)?.type !== undefined &&
-      (object as ISmartAssemblyMessage).type ===
-        SmartAssembliesService.MESSAGE_TYPE;
-  }
-}
-
-class SmartAssembliesService {
+export class SmartAssembliesService {
   static REFRESH_FREQUENCY = 5 * 60 * 1000; // milliseconds
   static MESSAGE_TYPE = "SmartAssembly";
 
-  constructor(private db: postgres.Sql, private queue: QueueService) {
+  constructor(private db: ISql, private queue: QueueService) {
     this.queue.register(new SmartAssemblyMessageConsumer(db));
   }
 

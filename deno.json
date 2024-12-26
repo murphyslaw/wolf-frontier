@@ -2,12 +2,12 @@
   "lock": false,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable -A -",
+    "cli": "echo \"import '\\$fresh/src/dev/cli.ts'\" | deno run --unstable --allow-all -",
     "manifest": "deno task cli manifest $(pwd)",
-    "start": "deno run -A --watch=static/,routes/,utils/ dev.ts",
-    "build": "deno run -A dev.ts build",
-    "preview": "deno run -A main.ts",
-    "update": "deno run -A -r https://fresh.deno.dev/update .",
+    "start": "deno run --allow-all --watch=static/,routes/,utils/ dev.ts",
+    "build": "deno run --allow-all dev.ts build",
+    "preview": "deno run --allow-all main.ts",
+    "update": "deno run --allow-all --reload https://fresh.deno.dev/update .",
     "deploy": "./deploy/deploy.sh"
   },
   "unstable": ["kv"],

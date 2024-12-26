@@ -11,3 +11,5 @@ export const sql = postgres({
     undefined: null,
   },
 });
+
+export type ISql = postgres.Sql;

@@ -1,10 +1,9 @@
-import { EF_SmartCharacter } from "./CharacterService.ts";
 import { RequestService } from "./RequestService.ts";
-import { EF_SmartAssembly } from "./SmartAssembliesService.ts";
-
-interface IHealthResponse {
-  ok: boolean;
-}
+import {
+  EF_Health,
+  EF_SmartAssembly,
+  EF_SmartCharacter,
+} from "./types/WorldApiTypes.ts";
 
 class WorldApiClient {
   private ENDPOINT =
@@ -14,7 +13,7 @@ class WorldApiClient {
 
   public async health(): Promise<boolean> {
     try {
-      const response = await this.get<IHealthResponse>("health");
+      const response = await this.get<EF_Health>("health");
 
       return response.status === 200 && Boolean(response.parsedBody?.ok);
     } catch (error) {
