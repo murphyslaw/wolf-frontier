@@ -29,7 +29,7 @@ class CharacterService {
     return result.count;
   }
 
-  public async get(address: string): Promise<ICharacter> {
+  public async get(address: string): Promise<ICharacter | null> {
     const [result] = await this
       .db<ICharacter[]>`
         SELECT
@@ -48,7 +48,9 @@ class CharacterService {
         AND sc.address = ${address}
       ;`;
 
-    this.cache([result]);
+    if (result) {
+      this.cache([result]);
+    }
 
     return result;
   }
