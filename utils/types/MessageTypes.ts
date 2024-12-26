@@ -11,3 +11,7 @@ export interface ISmartAssemblyMessage {
 export interface IKillmailsMessage {
   type: "Killmails";
 }
+
+export interface IHealthMessage {
+  type: "Health";
+}

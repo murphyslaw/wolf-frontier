@@ -1,10 +1,10 @@
 import { defineLayout } from "$fresh/server.ts";
 import { Footer } from "../components/Footer.tsx";
 import { Header } from "../components/Header.tsx";
-import { worldApiService } from "../utils/WorldApiService.ts";
+import { healthService } from "../utils/HealthService.ts";
 
 export default defineLayout(async (_req, ctx) => {
-  const online = await worldApiService.online();
+  const online = await healthService.online();
 
   return (
     <>

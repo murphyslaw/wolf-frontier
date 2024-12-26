@@ -47,3 +47,8 @@ export interface DB_Killmail {
   killer: string;
   timestamp: number;
 }
+
+export interface DB_Health {
+  online: boolean;
+  updated_at: number;
+}

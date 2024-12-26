@@ -13,3 +13,4 @@ export const sql = postgres({
 });
 
 export type ISql = postgres.Sql;
+export type IKv = Deno.Kv;
