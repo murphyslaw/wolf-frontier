@@ -13,4 +13,4 @@ docker push $IMAGE_NAME
 ssh $SERVER_USER@$SERVER_HOST "cd $SERVER_WORK_DIR && sed -i -e \"s/RELEASE_ID=.*/RELEASE_ID='$RELEASE_ID'/g\" .env && exit"
 ssh $SERVER_USER@$SERVER_HOST "cd $SERVER_WORK_DIR && sed -i -e \"s/RELEASE_DATE=.*/RELEASE_DATE='$RELEASE_DATE'/g\" .env && exit"
 
-ssh $SERVER_USER@$SERVER_HOST "cd $SERVER_WORK_DIR && docker compose pull && docker compose up -d && exit"
+ssh $SERVER_USER@$SERVER_HOST "cd $SERVER_WORK_DIR && docker compose pull && docker compose up --remove-orphans -d && exit"
