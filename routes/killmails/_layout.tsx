@@ -9,7 +9,7 @@ export default function Layout(props: PageProps) {
         </h1>
 
         <h2 class="headlineMedium uppercase text-white">
-          Death is certain and just a form of communication
+          Death is certain and "killing just a form of communication"
         </h2>
       </header>
 
