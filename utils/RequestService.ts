@@ -43,7 +43,9 @@ export class RequestService {
     }
 
     if (!response.ok) {
-      throw new Error(response.statusText);
+      throw new Error(response.statusText, {
+        cause: { request, response: response.parsedBody },
+      });
     }
 
     return response;
