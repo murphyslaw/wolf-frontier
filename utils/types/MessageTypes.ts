@@ -3,6 +3,10 @@ export interface ICharacterMessage {
   address: string;
 }
 
+export interface ICharactersMessage {
+  type: "Characters";
+}
+
 export interface ISmartAssemblyMessage {
   type: "SmartAssembly";
   id: string;

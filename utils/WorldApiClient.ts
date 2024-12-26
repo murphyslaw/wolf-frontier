@@ -4,6 +4,7 @@ import {
   EF_Killmail,
   EF_SmartAssembly,
   EF_SmartCharacter,
+  EF_SmartCharacterCompact,
 } from "./types/WorldApiTypes.ts";
 
 class WorldApiClient {
@@ -35,6 +36,19 @@ class WorldApiClient {
     } catch (error) {
       console.error("could not fetch smart character", address, error);
       return null;
+    }
+  }
+
+  public async smartcharacters(): Promise<EF_SmartCharacterCompact[]> {
+    try {
+      const response = await this.get<EF_SmartCharacterCompact[]>(
+        `smartcharacters`,
+      );
+
+      return response.parsedBody || [];
+    } catch (error) {
+      console.error("could not fetch smart characters", error);
+      return [];
     }
   }
 

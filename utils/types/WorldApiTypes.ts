@@ -15,6 +15,11 @@ export interface EF_SmartCharacter {
   smartAssemblies: EF_SmartAssembly[];
 }
 
+export type EF_SmartCharacterCompact = Pick<
+  EF_SmartCharacter,
+  "address" | "id" | "name" | "image"
+>;
+
 export interface EF_SmartAssembly {
   id: string;
   itemId: string;
