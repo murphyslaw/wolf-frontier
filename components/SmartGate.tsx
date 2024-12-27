@@ -1,5 +1,6 @@
 import { smartAssemblyPartial } from "../utils/PartialsHelper.ts";
 import { ISmartAssembly } from "../utils/SmartAssembliesService.ts";
+import { BlockchainLink } from "./BlockchainLink.tsx";
 import { LinkedSmartGateBadgeIndicator } from "./LinkedSmartGateBadgeIndicator.tsx";
 import { OnlineBadgeIndicator } from "./OnlineBadgeIndicator.tsx";
 import { SmartAssemblyCompact } from "./SmartAssemblyCompact.tsx";
@@ -42,14 +43,9 @@ export function SmartGate({ smartAssembly, destination }: Props) {
         <div class="w-full flex flex-row items-center justify-between">
           <OnlineBadgeIndicator online={smartAssembly.is_online} />
 
-          <a
-            href={`https://blockchain-gateway-stillness.live.tech.evefrontier.com/smartassemblies/${smartAssembly.smart_assembly_id}`}
-            target="_blank"
-          >
-            <svg class="w-4 h-4">
-              <use href="/images/icons.svg#link" />
-            </svg>
-          </a>
+          <BlockchainLink
+            path={`smartassemblies/${smartAssembly.smart_assembly_id}`}
+          />
         </div>
 
         <div>

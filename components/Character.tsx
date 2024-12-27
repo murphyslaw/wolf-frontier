@@ -1,4 +1,5 @@
 import { characterService, ICharacter } from "../utils/CharacterService.ts";
+import { BlockchainLink } from "./BlockchainLink.tsx";
 import { EveToken } from "./EveToken.tsx";
 
 export function Character(props: { character: ICharacter }) {
@@ -26,9 +27,15 @@ export function Character(props: { character: ICharacter }) {
 
       <div class="flex flex-col gap-4">
         <div class="flex flex-col gap-0">
-          <label class="labelLarge text-grayLight">
-            Player
-          </label>
+          <div class="w-full flex flex-row items-center justify-between">
+            <label class="labelLarge text-grayLight">
+              Player
+            </label>
+
+            <BlockchainLink
+              path={`smartcharacters/${props.character.address}`}
+            />
+          </div>
 
           <h1 class="headlineLarge">
             {props.character.name}
