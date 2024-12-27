@@ -64,6 +64,25 @@ export interface EF_SmartAssembly {
     storageItems: string[];
     ephemeralInventoryList: string[];
   };
+  gateLink?: {
+    gatesInRange: Pick<
+      EF_SmartAssembly,
+      | "id"
+      | "itemId"
+      | "chainId"
+      | "stateId"
+      | "state"
+      | "isOnline"
+      | "solarSystem"
+      | "name"
+      | "ownerId"
+      | "ownerName"
+      | "typeId"
+      | "assemblyType"
+    >[];
+    isLinked: boolean;
+    destinationGate: string;
+  };
 }
 
 export interface EF_Killmail {

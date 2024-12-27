@@ -53,6 +53,7 @@ export class SmartAssemblyMessageConsumer implements Consumer {
       fuel_unit_volume: data.fuel.fuelUnitVolume,
       storage_capacity: data.inventory?.storageCapacity || "",
       used_capacity: data.inventory?.usedCapacity || "",
+      destination_gate: data.gateLink?.destinationGate,
     };
 
     await this.db`
@@ -80,7 +81,8 @@ export class SmartAssemblyMessageConsumer implements Consumer {
             fuel_max_capacity = EXCLUDED.fuel_max_capacity,
             fuel_unit_volume = EXCLUDED.fuel_unit_volume,
             storage_capacity = EXCLUDED.storage_capacity,
-            used_capacity = EXCLUDED.used_capacity
+            used_capacity = EXCLUDED.used_capacity,
+            destination_gate = EXCLUDED.destination_gate
     `;
 
     return true;

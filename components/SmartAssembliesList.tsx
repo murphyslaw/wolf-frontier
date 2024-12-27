@@ -1,4 +1,5 @@
 import { Partial } from "$fresh/runtime.ts";
+import { smartAssemblyPartial } from "../utils/PartialsHelper.ts";
 import { ISmartAssembly } from "../utils/SmartAssembliesService.ts";
 import { SmartAssemblyCompact } from "./SmartAssemblyCompact.tsx";
 
@@ -6,13 +7,6 @@ interface Props {
   smartAssemblies: ISmartAssembly[] | undefined;
   type: ISmartAssembly["assembly_type"];
   title: string;
-}
-
-function partial(
-  type: Props["type"],
-  id: ISmartAssembly["smart_assembly_id"],
-) {
-  return `/partials/smartassemblies/${type.toLowerCase()}/${id}`;
 }
 
 export function SmartAssembliesList({ smartAssemblies, type, title }: Props) {
@@ -29,7 +23,10 @@ export function SmartAssembliesList({ smartAssemblies, type, title }: Props) {
           {smartAssemblies.map((smartAssembly) => (
             <button
               class="smartAssembly flex flex-row gap-x-4"
-              f-partial={partial(type, smartAssembly.smart_assembly_id)}
+              f-partial={smartAssemblyPartial(
+                type,
+                smartAssembly.smart_assembly_id,
+              )}
             >
               <SmartAssemblyCompact smartAssembly={smartAssembly} />
             </button>

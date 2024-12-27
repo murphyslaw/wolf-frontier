@@ -259,6 +259,20 @@
       }
     }
 
+    &.linkedBadge {
+      z-index: 10;
+
+      &[data-state="linked"] {
+        background-color: theme('colors.green.900');
+        color: theme('colors.green.300');
+      }
+
+      &[data-state="unconnected"] {
+        background-color: theme('colors.pink.900');
+        color: theme('colors.pink.300');
+      }
+    }
+
     &.lossTypeBadge {
       &[data-state="ship"] {
         background-color: theme('colors.neutral.900');

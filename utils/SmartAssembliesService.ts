@@ -1,6 +1,7 @@
 import { SmartAssemblyMessageConsumer } from "./consumers/SmartAssemblyMessageConsumer.ts";
 import { ISql, sql } from "./db.ts";
 import { QueueService, queueService } from "./QueueService.ts";
+import { DB_SmartAssembly } from "./types/DatabaseTypes.ts";
 
 export interface ISmartAssembly {
   smart_assembly_id: string;
@@ -13,7 +14,6 @@ export interface ISmartAssembly {
   owner_id: string;
   owner_name: string;
   type_id: number;
-  image: string;
   assembly_type: "SmartStorageUnit" | "SmartTurret" | "SmartGate";
   is_valid: boolean;
   anchored_at_time: string;
@@ -22,18 +22,23 @@ export interface ISmartAssembly {
   fuel_max_capacity: number;
   fuel_unit_volume: number;
   updated_at: string;
+  destination_gate: string | null;
 }
 
 class SmartAssembliesService {
-  static REFRESH_FREQUENCY = 10 * 60 * 1000; // milliseconds
+  static REFRESH_FREQUENCY = 60 * 60 * 1000; // milliseconds
 
   constructor(private db: ISql, private queue: QueueService) {
     this.queue.register(new SmartAssemblyMessageConsumer(db));
   }
 
-  public async get(id: string): Promise<ISmartAssembly> {
+  public async get(
+    id: string | null,
+  ): Promise<ISmartAssembly | null> {
+    if (!id) return null;
+
     const [result] = await this
-      .db<ISmartAssembly[]>`
+      .db<DB_SmartAssembly[]>`
         SELECT
           sa.smart_assembly_id,
           sa.item_id,
@@ -53,7 +58,8 @@ class SmartAssembliesService {
           sa.fuel_consumption_per_min,
           ROUND(sa.fuel_max_capacity / 10000000000000000) AS "fuel_max_capacity",
           sa.fuel_unit_volume,
-          sa.updated_at
+          sa.updated_at,
+          sa.destination_gate
         FROM smartassemblies sa
         LEFT JOIN solarsystems ss ON ss.id = sa.solar_system_id
         LEFT JOIN types t ON t.id = sa.type_id
@@ -62,16 +68,20 @@ class SmartAssembliesService {
           AND sa.smart_assembly_id = ${id}
       ;`;
 
-    this.cache([result]);
+    if (result) {
+      this.cache([result]);
 
-    return result;
+      return result;
+    }
+
+    return null;
   }
 
   public async findByCharacter(
     address: string,
   ): Promise<Partial<Record<string, ISmartAssembly[]>>> {
     const result = await this
-      .db<ISmartAssembly[]>`
+      .db<DB_SmartAssembly[]>`
         SELECT
           sa.smart_assembly_id,
           sa.item_id,
@@ -91,7 +101,8 @@ class SmartAssembliesService {
           sa.fuel_consumption_per_min,
           ROUND(sa.fuel_max_capacity / 10000000000000000) AS "fuel_max_capacity",
           sa.fuel_unit_volume,
-          sa.updated_at
+          sa.updated_at,
+          sa.destination_gate
         FROM smartassemblies sa
         LEFT JOIN solarsystems ss ON ss.id = sa.solar_system_id
         LEFT JOIN types t ON t.id = sa.type_id
@@ -113,7 +124,7 @@ class SmartAssembliesService {
     tribeId: number,
   ): Promise<Partial<Record<string, ISmartAssembly[]>>> {
     const result = await this
-      .db<ISmartAssembly[]>`
+      .db<DB_SmartAssembly[]>`
         SELECT
           sa.smart_assembly_id,
           sa.item_id,
@@ -133,7 +144,8 @@ class SmartAssembliesService {
           sa.fuel_consumption_per_min,
           ROUND(sa.fuel_max_capacity / 10000000000000000) AS "fuel_max_capacity",
           sa.fuel_unit_volume,
-          sa.updated_at
+          sa.updated_at,
+          sa.destination_gate
         FROM smartassemblies sa
         JOIN smartcharacters sc ON sc.address = sa.owner_id
         LEFT JOIN solarsystems ss ON ss.id = sa.solar_system_id
@@ -156,7 +168,7 @@ class SmartAssembliesService {
     solarSystemId: number,
   ): Promise<Partial<Record<string, ISmartAssembly[]>>> {
     const result = await this
-      .db<ISmartAssembly[]>`
+      .db<DB_SmartAssembly[]>`
         SELECT
           sa.smart_assembly_id,
           sa.item_id,
@@ -176,7 +188,8 @@ class SmartAssembliesService {
           sa.fuel_consumption_per_min,
           ROUND(sa.fuel_max_capacity / 10000000000000000) AS "fuel_max_capacity",
           sa.fuel_unit_volume,
-          sa.updated_at
+          sa.updated_at,
+          sa.destination_gate
         FROM smartassemblies sa
         JOIN solarsystems ss ON ss.id = sa.solar_system_id
         LEFT JOIN types t ON t.id = sa.type_id
@@ -194,9 +207,14 @@ class SmartAssembliesService {
     return Object.groupBy(result, ({ assembly_type }) => assembly_type);
   }
 
-  private async cache(smartAssemblies: ISmartAssembly[]) {
+  private async cache(
+    smartAssemblies: Pick<
+      DB_SmartAssembly,
+      "updated_at" | "smart_assembly_id"
+    >[],
+  ) {
     for (const smartAssembly of smartAssemblies) {
-      if (this.isStale(smartAssembly)) {
+      if (this.isStale(smartAssembly.updated_at)) {
         await this.queue.enqueue(
           SmartAssemblyMessageConsumer.createMessage(
             smartAssembly.smart_assembly_id,
@@ -206,8 +224,8 @@ class SmartAssembliesService {
     }
   }
 
-  private isStale(value: ISmartAssembly): boolean {
-    return new Date(value.updated_at + "Z").getTime() +
+  private isStale(value: string): boolean {
+    return new Date(value + "Z").getTime() +
         SmartAssembliesService.REFRESH_FREQUENCY < new Date().getTime();
   }
 }
