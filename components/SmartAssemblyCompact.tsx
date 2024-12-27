@@ -7,7 +7,7 @@ interface Props {
 
 export function SmartAssemblyCompact({ smartAssembly }: Props) {
   return (
-    <div class="bordered p-1 relative">
+    <div class="bordered p-1 relative hover:border hover:border-white">
       <img
         class="w-10 h-10"
         src="/images/smartassembly.png"
