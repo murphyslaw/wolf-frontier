@@ -27,30 +27,36 @@ export default async function TribeDetailsPage(
 
   return (
     <>
-      <div class="flex flex-col gap-4 w-full">
-        <div>
-          <h2 class="headlineLarge">
-            {tribe.name} [{tribe.ticker}]
-          </h2>
+      <div class="flex flex-col gap-8 w-full">
+        <div class="flex flex-row gap-4">
+          <div class="bordered p-2">
+            <img
+              src={`/images/tribes/${tribe.id % 10}.png`}
+              width="124px"
+              height="124px"
+            />
+          </div>
 
-          <label class="labelLarge text-grayLight">
-            Member Count: {tribe.count}
-          </label>
-        </div>
+          <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-0">
+              <div class="w-full flex flex-row items-center justify-between">
+                <label class="labelLarge text-grayLight">
+                  Tribe
+                </label>
+              </div>
 
-        <div class="flex flex-wrap gap-4">
-          {members.map((member) => (
-            <CharacterCompact key={member.address} character={member} />
-          ))}
-        </div>
-
-        <div class="grid grid-cols-2 w-2/3 mx-auto mt-8">
-          <section class="flex flex-col gap-y-4">
-            <h2 class="titleMedium">Info</h2>
+              <h2 class="headlineLarge">
+                {tribe.name} [{tribe.ticker}]
+              </h2>
+            </div>
 
             <ul class="bulletList bodyMedium">
               <li>
                 ID: {tribe.id}
+              </li>
+
+              <li>
+                MEMBER: {tribe.count}
               </li>
 
               {founder && (
@@ -68,7 +74,7 @@ export default async function TribeDetailsPage(
 
               {tribe.solar_system_name && (
                 <li>
-                  SOLAR SYSTEM:{" "}
+                  HEADQUARTERS:{" "}
                   <a
                     href={`/solarsystems/${tribe.solar_system_id}`}
                     class="bodyMedium"
@@ -84,8 +90,16 @@ export default async function TribeDetailsPage(
                 </li>
               )}
             </ul>
-          </section>
+          </div>
+        </div>
 
+        <div class="flex flex-wrap gap-4">
+          {members.map((member) => (
+            <CharacterCompact key={member.address} character={member} />
+          ))}
+        </div>
+
+        <div class="grid grid-cols-2 w-2/3 mx-auto mt-8">
           <section class="flex flex-col gap-y-4">
             <h2 class="titleMedium">
               Most recent kills ({killmails.length})
