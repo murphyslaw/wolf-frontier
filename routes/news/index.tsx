@@ -9,7 +9,75 @@ export default function News() {
         <article class="max-w-[40vw] flex flex-col gap-y-8 mx-auto">
           <header>
             <h2 class="headlineLarge">
-              Integration of Smart Assemblies
+              smarter gates and more current data
+            </h2>
+
+            <time
+              class="labelMedium text-grayLight"
+              datetime="2024-12-21 09:00"
+            >
+              2024-12-27 16:17
+            </time>
+          </header>
+
+          <main class="flex flex-col gap-y-8">
+            <p class="bodyMedium">
+              A crucial information for Smart Gates was missing -{" "}
+              <span class="text-orange-600">Linked Gate Information</span>{" "}
+              is now available.
+            </p>
+
+            <p class="bodyMedium">
+              You are now able to see if a Smart Gate is linked and to what
+              other Smart Gate it is linked to. You can even click the linked
+              Smart Gate and see its details.
+            </p>
+
+            <img
+              class="bordered"
+              src="/images/news/linked-smart-gate.jpg"
+            />
+
+            <p class="bodyMedium">
+              This time around, we mainly improved the backend side, where the
+              data is now{" "}
+              <span class="text-orange-600">
+                synched and loaded more dynamically
+              </span>. For example, Killmails are synched every hour, all Smart
+              Character and Smart Assembly data is at least synched once a day,
+              but also refetched in the background, if the details are requested
+              and they are older than 10 minutes. The threshold might need to be
+              adjusted in the future, depending on how heavy the page is used.
+            </p>
+
+            <p class="bodyMedium">
+              We also improved the consistency of the page header for character
+              and tribe pages, and the tribes got a "random" image, to make them
+              more recognizable. You will also find a direct link to the most
+              recent blockchain data in the character information section. Most
+              pages now have{" "}
+              <span class="text-orange-600">Tabbed Content</span>, which reduces
+              a bit the load on the new lazy load and synchronization
+              functionality, by not loading everything right away in the
+              background.
+            </p>
+
+            <img
+              class="bordered"
+              src="/images/news/tabbed-content.jpg"
+            />
+
+            <p class="bodyMedium">
+              Fly Safe,<br />
+              Murphyslaw
+            </p>
+          </main>
+        </article>
+
+        <article class="max-w-[40vw] flex flex-col gap-y-8 mx-auto">
+          <header>
+            <h2 class="headlineLarge">
+              integration of smart assemblies
             </h2>
 
             <time
@@ -37,7 +105,7 @@ export default function News() {
 
             <img
               class="bordered"
-              src="/images/screenshots/smart-assemblies-insights.jpg"
+              src="/images/news/smart-assemblies-insights.jpg"
             />
 
             <p class="bodyMedium">
@@ -48,7 +116,7 @@ export default function News() {
 
             <img
               class="bordered"
-              src="/images/screenshots/killmails-timeline.jpg"
+              src="/images/news/killmails-timeline.jpg"
             />
 
             <p class="bodyMedium">
