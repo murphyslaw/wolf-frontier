@@ -23,23 +23,25 @@ export default defineRoute(async (_req, ctx) => {
         active="smartassemblies"
       />
 
-      <SmartAssembliesList
-        type="SmartStorageUnit"
-        smartAssemblies={smartAssemblies.SmartStorageUnit}
-        title="Smart Storage Units"
-      />
+      <div class="flex flex-col gap-4">
+        <SmartAssembliesList
+          type="SmartGate"
+          smartAssemblies={smartAssemblies.SmartGate}
+          title="Smart Gates"
+        />
 
-      <SmartAssembliesList
-        type="SmartTurret"
-        smartAssemblies={smartAssemblies.SmartTurret}
-        title="Smart Turrets"
-      />
+        <SmartAssembliesList
+          type="SmartTurret"
+          smartAssemblies={smartAssemblies.SmartTurret}
+          title="Smart Turrets"
+        />
 
-      <SmartAssembliesList
-        type="SmartGate"
-        smartAssemblies={smartAssemblies.SmartGate}
-        title="Smart Gates"
-      />
+        <SmartAssembliesList
+          type="SmartStorageUnit"
+          smartAssemblies={smartAssemblies.SmartStorageUnit}
+          title="Smart Storage Units"
+        />
+      </div>
     </Partial>
   );
 });

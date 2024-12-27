@@ -10,16 +10,17 @@ export const config: RouteConfig = {
 };
 
 export default defineRoute(async (_req, ctx) => {
-  const address = ctx.params.address;
-  const smartAssemblies = await smartAssembliesService.findByCharacter(address);
+  const id = Number(ctx.params.id);
+  const smartAssemblies = await smartAssembliesService.findBySolarSystem(id);
 
   return (
     <Partial
-      name={`character-tab-content`}
+      name={`solarsystem-tab-content`}
     >
       <Tabs
-        killmailsPath={`/partials/character-tabs/killmails/${address}`}
-        smartAssembliesPath={`/partials/character-tabs/smartassemblies/${address}`}
+        killmailsPath={`/partials/solarsystem-tabs/killmails/${id}`}
+        smartAssembliesPath={`/partials/solarsystem-tabs/smartassemblies/${id}`}
+        headquartersPath={`/partials/solarsystem-tabs/headquarters/${id}`}
         active="smartassemblies"
       />
 

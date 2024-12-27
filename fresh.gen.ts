@@ -22,6 +22,9 @@ import * as $partials_character_tabs_smartassemblies_address_ from "./routes/par
 import * as $partials_smartassemblies_smartgate_id_ from "./routes/partials/smartassemblies/smartgate/[id].tsx";
 import * as $partials_smartassemblies_smartstorageunit_id_ from "./routes/partials/smartassemblies/smartstorageunit/[id].tsx";
 import * as $partials_smartassemblies_smartturret_id_ from "./routes/partials/smartassemblies/smartturret/[id].tsx";
+import * as $partials_solarsystem_tabs_headquarters_id_ from "./routes/partials/solarsystem-tabs/headquarters/[id].tsx";
+import * as $partials_solarsystem_tabs_killmails_id_ from "./routes/partials/solarsystem-tabs/killmails/[id].tsx";
+import * as $partials_solarsystem_tabs_smartassemblies_id_ from "./routes/partials/solarsystem-tabs/smartassemblies/[id].tsx";
 import * as $partials_tribe_tabs_killmails_id_ from "./routes/partials/tribe-tabs/killmails/[id].tsx";
 import * as $partials_tribe_tabs_smartassemblies_id_ from "./routes/partials/tribe-tabs/smartassemblies/[id].tsx";
 import * as $solarsystems_id_ from "./routes/solarsystems/[id].tsx";
@@ -62,6 +65,12 @@ const manifest = {
       $partials_smartassemblies_smartstorageunit_id_,
     "./routes/partials/smartassemblies/smartturret/[id].tsx":
       $partials_smartassemblies_smartturret_id_,
+    "./routes/partials/solarsystem-tabs/headquarters/[id].tsx":
+      $partials_solarsystem_tabs_headquarters_id_,
+    "./routes/partials/solarsystem-tabs/killmails/[id].tsx":
+      $partials_solarsystem_tabs_killmails_id_,
+    "./routes/partials/solarsystem-tabs/smartassemblies/[id].tsx":
+      $partials_solarsystem_tabs_smartassemblies_id_,
     "./routes/partials/tribe-tabs/killmails/[id].tsx":
       $partials_tribe_tabs_killmails_id_,
     "./routes/partials/tribe-tabs/smartassemblies/[id].tsx":
