@@ -320,4 +320,43 @@
       }
     }
   }
+
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: theme('colors.grayLight');
+
+    & li {
+      margin-inline-end: 0.5rem;
+    }
+
+    & svg {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    & button {
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      border-bottom-style: solid;
+      border-bottom-width: 2px;
+      border-bottom-color: transparent;
+
+      &[aria-current="true"] {
+        border-bottom-color: theme('colors.orange.600');
+        color: theme('colors.orange.600');
+      }
+
+      &[aria-current="false"]:hover {
+        border-bottom-color: theme('colors.white');
+        color: theme('colors.white');
+      }
+    }
+
+  }
 }

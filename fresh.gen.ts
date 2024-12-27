@@ -17,9 +17,13 @@ import * as $legal_layout from "./routes/legal/_layout.tsx";
 import * as $legal_privacy_policy from "./routes/legal/privacy-policy.tsx";
 import * as $legal_terms_of_service from "./routes/legal/terms-of-service.tsx";
 import * as $news_index from "./routes/news/index.tsx";
+import * as $partials_character_tabs_killmails_address_ from "./routes/partials/character-tabs/killmails/[address].tsx";
+import * as $partials_character_tabs_smartassemblies_address_ from "./routes/partials/character-tabs/smartassemblies/[address].tsx";
 import * as $partials_smartassemblies_smartgate_id_ from "./routes/partials/smartassemblies/smartgate/[id].tsx";
 import * as $partials_smartassemblies_smartstorageunit_id_ from "./routes/partials/smartassemblies/smartstorageunit/[id].tsx";
 import * as $partials_smartassemblies_smartturret_id_ from "./routes/partials/smartassemblies/smartturret/[id].tsx";
+import * as $partials_tribe_tabs_killmails_id_ from "./routes/partials/tribe-tabs/killmails/[id].tsx";
+import * as $partials_tribe_tabs_smartassemblies_id_ from "./routes/partials/tribe-tabs/smartassemblies/[id].tsx";
 import * as $solarsystems_id_ from "./routes/solarsystems/[id].tsx";
 import * as $solarsystems_layout from "./routes/solarsystems/_layout.tsx";
 import * as $solarsystems_index from "./routes/solarsystems/index.tsx";
@@ -48,12 +52,20 @@ const manifest = {
     "./routes/legal/privacy-policy.tsx": $legal_privacy_policy,
     "./routes/legal/terms-of-service.tsx": $legal_terms_of_service,
     "./routes/news/index.tsx": $news_index,
+    "./routes/partials/character-tabs/killmails/[address].tsx":
+      $partials_character_tabs_killmails_address_,
+    "./routes/partials/character-tabs/smartassemblies/[address].tsx":
+      $partials_character_tabs_smartassemblies_address_,
     "./routes/partials/smartassemblies/smartgate/[id].tsx":
       $partials_smartassemblies_smartgate_id_,
     "./routes/partials/smartassemblies/smartstorageunit/[id].tsx":
       $partials_smartassemblies_smartstorageunit_id_,
     "./routes/partials/smartassemblies/smartturret/[id].tsx":
       $partials_smartassemblies_smartturret_id_,
+    "./routes/partials/tribe-tabs/killmails/[id].tsx":
+      $partials_tribe_tabs_killmails_id_,
+    "./routes/partials/tribe-tabs/smartassemblies/[id].tsx":
+      $partials_tribe_tabs_smartassemblies_id_,
     "./routes/solarsystems/[id].tsx": $solarsystems_id_,
     "./routes/solarsystems/_layout.tsx": $solarsystems_layout,
     "./routes/solarsystems/index.tsx": $solarsystems_index,

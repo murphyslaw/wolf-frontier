@@ -1,10 +1,8 @@
+import { Partial } from "$fresh/runtime.ts";
 import { FreshContext } from "$fresh/server.ts";
 import { Character } from "../../components/Character.tsx";
-import { Killmails } from "../../components/Killmails.tsx";
-import { SmartAssembliesList } from "../../components/SmartAssembliesList.tsx";
+import { Tabs } from "../../components/Tabs.tsx";
 import { characterService } from "../../utils/CharacterService.ts";
-import { killmailService } from "../../utils/KillmailService.ts";
-import { smartAssembliesService } from "../../utils/SmartAssembliesService.ts";
 
 export default async function CharacterDetailsPage(
   _req: Request,
@@ -17,38 +15,21 @@ export default async function CharacterDetailsPage(
     return ctx.renderNotFound();
   }
 
-  const killmails = await killmailService.findByCharacter(address);
-  const smartAssemblies = await smartAssembliesService.findByCharacter(address);
-
   return (
     <>
       <Character character={character} />
 
-      <section class="flex flex-col gap-y-8 items-center">
-        <div class="flex flex-col gap-y-8">
-          <h2 class="titleMedium">Most recent kills ({killmails.length})</h2>
-
-          <Killmails killmails={killmails} />
-        </div>
-      </section>
-
-      <SmartAssembliesList
-        type="SmartStorageUnit"
-        smartAssemblies={smartAssemblies.SmartStorageUnit}
-        title="Smart Storage Units"
-      />
-
-      <SmartAssembliesList
-        type="SmartTurret"
-        smartAssemblies={smartAssemblies.SmartTurret}
-        title="Smart Turrets"
-      />
-
-      <SmartAssembliesList
-        type="SmartGate"
-        smartAssemblies={smartAssemblies.SmartGate}
-        title="Smart Gates"
-      />
+      <div
+        f-client-nav
+      >
+        <Partial name={`character-tab-content`}>
+          <Tabs
+            killmailsPath={`/partials/character-tabs/killmails/${character.address}`}
+            smartAssembliesPath={`/partials/character-tabs/smartassemblies/${character.address}`}
+            active="none"
+          />
+        </Partial>
+      </div>
     </>
   );
 }

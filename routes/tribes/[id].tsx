@@ -1,10 +1,8 @@
+import { Partial } from "$fresh/runtime.ts";
 import { FreshContext } from "$fresh/server.ts";
 import { CharacterCompact } from "../../components/CharacterCompact.tsx";
-import { Killmail } from "../../components/Killmail.tsx";
-import { SmartAssembliesList } from "../../components/SmartAssembliesList.tsx";
+import { Tabs } from "../../components/Tabs.tsx";
 import { characterService } from "../../utils/CharacterService.ts";
-import { killmailService } from "../../utils/KillmailService.ts";
-import { smartAssembliesService } from "../../utils/SmartAssembliesService.ts";
 import { tribeService } from "../../utils/TribeService.ts";
 
 export default async function TribeDetailsPage(
@@ -19,8 +17,6 @@ export default async function TribeDetailsPage(
   }
 
   const members = await characterService.findByTribe(tribeId);
-  const killmails = await killmailService.findByTribe(tribeId);
-  const smartAssemblies = await smartAssembliesService.findByTribe(tribeId);
 
   const ceo = members.find((member) => member.address === tribe.ceo);
   const founder = members.find((member) => member.address === tribe.founder);
@@ -98,38 +94,18 @@ export default async function TribeDetailsPage(
             <CharacterCompact key={member.address} character={member} />
           ))}
         </div>
+      </div>
 
-        <div class="grid grid-cols-2 w-2/3 mx-auto mt-8">
-          <section class="flex flex-col gap-y-4">
-            <h2 class="titleMedium">
-              Most recent kills ({killmails.length})
-            </h2>
-
-            <ol class="relative border-s border-neutral-700">
-              {killmails.map((killmail) => (
-                <Killmail key={killmail.id} killmail={killmail} />
-              ))}
-            </ol>
-          </section>
-        </div>
-
-        <SmartAssembliesList
-          type="SmartStorageUnit"
-          smartAssemblies={smartAssemblies.SmartStorageUnit}
-          title="Smart Storage Units"
-        />
-
-        <SmartAssembliesList
-          type="SmartTurret"
-          smartAssemblies={smartAssemblies.SmartTurret}
-          title="Smart Turrets"
-        />
-
-        <SmartAssembliesList
-          type="SmartGate"
-          smartAssemblies={smartAssemblies.SmartGate}
-          title="Smart Gates"
-        />
+      <div
+        f-client-nav
+      >
+        <Partial name={`tribe-tab-content`}>
+          <Tabs
+            killmailsPath={`/partials/tribe-tabs/killmails/${tribe.id}`}
+            smartAssembliesPath={`/partials/tribe-tabs/smartassemblies/${tribe.id}`}
+            active="none"
+          />
+        </Partial>
       </div>
     </>
   );
