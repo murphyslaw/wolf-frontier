@@ -5,7 +5,11 @@ export function TribeCompact(
 ) {
   return (
     <p class="flex flex-col w-full">
-      <a href={`/tribes/${props.tribe.id}`} class="bodyMedium block">
+      <a
+        href={`/tribes/${props.tribe.id}`}
+        class="bodyMedium block"
+        f-client-nav={false}
+      >
         {props.tribe.name} [{props.tribe.ticker}]
       </a>
 

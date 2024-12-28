@@ -29,6 +29,7 @@ export function Killmail({ killmail }: Props) {
           <a
             href={`/characters/${killmail.killer}`}
             class="text-orange-600 hover:text-orange-600 hover:underline"
+            f-client-nav={false}
           >
             {killmail.killer_name || "unknown"}
           </a>{" "}
@@ -36,6 +37,7 @@ export function Killmail({ killmail }: Props) {
           <a
             href={`/characters/${killmail.victim}`}
             class="text-blue-600 hover:text-blue-600 hover:underline"
+            f-client-nav={false}
           >
             {killmail.victim_name || "unknown"}
           </a>
@@ -47,6 +49,7 @@ export function Killmail({ killmail }: Props) {
           <a
             href={`/solarsystems/${killmail.solar_system_id}`}
             class="bodyMedium text-white"
+            f-client-nav={false}
           >
             {killmail.solar_system_name || "unknown"}
           </a>
