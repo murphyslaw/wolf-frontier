@@ -9,6 +9,71 @@ export default function News() {
         <article class="max-w-[40vw] flex flex-col gap-y-8 mx-auto">
           <header>
             <h2 class="headlineLarge">
+              gate network visualisation
+            </h2>
+
+            <time
+              class="labelMedium text-grayLight"
+              datetime="2024-12-21 09:00"
+            >
+              2024-12-30 22:54
+            </time>
+          </header>
+
+          <main class="flex flex-col gap-y-8">
+            <p class="bodyMedium">
+              Travelers are busy these days. Countless{" "}
+              <span class="text-orange-600">Smart Gates</span>{" "}
+              have been deployed and slowly, the Frontier is rebuild and
+              reconnected. Highways, mostly with exclusive access rights, have
+              been created to shorten the distance between key locations. Time
+              to see, what's going on...
+            </p>
+
+            <p class="bodyMedium">
+              We've created a{" "}
+              <a href="/gates">Smart Gate Map</a>, that gives you a little bit
+              of a glimpse, what is going on in the Frontier. You can see Smart
+              Gate connections (<span class="text-green-600">green</span>) and a
+              few static connections (<span class="text-grayLight">gray</span>)
+              if Smart Gates locations are only one jump apart. You can also
+              click on each Solar System to retrieve more details (which now
+              also includes region and constellation data). In the tooltip, you
+              can even click the "clipboard" icon to get the Solar System as an
+              in-game link, ready to paste into your notebook or into the chat.
+            </p>
+
+            <img
+              class="bordered"
+              src="/images/news/smart-gate-networks.jpg"
+            />
+
+            <p class="bodyMedium">
+              The map is a simplified, 2D version{" "}
+              <span class="text-orange-600">without actual location</span>{" "}
+              data. This means, that the Solar Systems are not placed in any way
+              like in the in-game map. We've made this choice for now, to reduce
+              complexity and concentrate on the insight gained by having a
+              representation of the Smart Gate networks. Only online and valid
+              connections are displayed and some connections might be missing,
+              due to problems fetching the data from the blockchain.
+            </p>
+
+            <p class="bodyMedium">
+              By the way, you can also use your browser search, if you happen to
+              know a Solar System and want to locate it on the map.
+            </p>
+
+            <p class="bodyMedium">
+              Live long and prosper,<br />
+              Murphyslaw
+            </p>
+          </main>
+        </article>
+
+        <article class="max-w-[40vw] flex flex-col gap-y-8 mx-auto">
+          <header>
+            <h2 class="headlineLarge">
               smarter gates and more current data
             </h2>
 

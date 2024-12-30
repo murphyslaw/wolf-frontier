@@ -48,8 +48,8 @@ export default function Map(props: Props) {
 
   const container = useRef<HTMLDivElement>(null);
 
-  const width = 2000;
-  const height = 1500;
+  const width = 2500;
+  const height = 2500;
 
   // The force simulation mutates links and nodes, so create a copy
   // so that re-evaluating this cell produces the same result.
@@ -71,7 +71,10 @@ export default function Map(props: Props) {
     .attr("height", height)
     .attr("viewBox", [-width / 2, -height / 2, width, height])
     .attr("class", "bodyMedium text-white")
-    .attr("style", "max-width: 100%; height: auto;");
+    .attr(
+      "style",
+      "max-width: 100%; height: auto; background: radial-gradient(#0a0a0a 0%, #000000 70%);",
+    );
 
   const link = svg.append("g")
     .attr("fill", "none")
@@ -134,5 +137,7 @@ export default function Map(props: Props) {
     });
   });
 
-  return <div ref={container} id="container" />;
+  return (
+    <div ref={container} id="container" class="w-full h-auto overflow-auto" />
+  );
 }
