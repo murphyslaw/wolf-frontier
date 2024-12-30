@@ -9,6 +9,8 @@ import * as $_layout from "./routes/_layout.tsx";
 import * as $characters_address_ from "./routes/characters/[address].tsx";
 import * as $characters_layout from "./routes/characters/_layout.tsx";
 import * as $characters_index from "./routes/characters/index.tsx";
+import * as $gates_layout from "./routes/gates/_layout.tsx";
+import * as $gates_index from "./routes/gates/index.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $killmails_address_ from "./routes/killmails/[address].tsx";
 import * as $killmails_layout from "./routes/killmails/_layout.tsx";
@@ -19,6 +21,7 @@ import * as $legal_terms_of_service from "./routes/legal/terms-of-service.tsx";
 import * as $news_index from "./routes/news/index.tsx";
 import * as $partials_character_tabs_killmails_address_ from "./routes/partials/character-tabs/killmails/[address].tsx";
 import * as $partials_character_tabs_smartassemblies_address_ from "./routes/partials/character-tabs/smartassemblies/[address].tsx";
+import * as $partials_map_tooltip_id_ from "./routes/partials/map/tooltip/[id].tsx";
 import * as $partials_smartassemblies_smartgate_id_ from "./routes/partials/smartassemblies/smartgate/[id].tsx";
 import * as $partials_smartassemblies_smartstorageunit_id_ from "./routes/partials/smartassemblies/smartstorageunit/[id].tsx";
 import * as $partials_smartassemblies_smartturret_id_ from "./routes/partials/smartassemblies/smartturret/[id].tsx";
@@ -34,8 +37,13 @@ import * as $tribes_id_ from "./routes/tribes/[id].tsx";
 import * as $tribes_layout from "./routes/tribes/_layout.tsx";
 import * as $tribes_index from "./routes/tribes/index.tsx";
 import * as $CharacterSearch from "./islands/CharacterSearch.tsx";
+import * as $Map from "./islands/Map.tsx";
+import * as $SolarSystemInGameLink from "./islands/SolarSystemInGameLink.tsx";
 import * as $SolarSystemSearch from "./islands/SolarSystemSearch.tsx";
 import * as $TribeSearch from "./islands/TribeSearch.tsx";
+import * as $providers_D3Provider from "./islands/providers/D3Provider.tsx";
+import * as $providers_PopperProvider from "./islands/providers/PopperProvider.tsx";
+import * as $providers_TippyProvider from "./islands/providers/TippyProvider.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -47,6 +55,8 @@ const manifest = {
     "./routes/characters/[address].tsx": $characters_address_,
     "./routes/characters/_layout.tsx": $characters_layout,
     "./routes/characters/index.tsx": $characters_index,
+    "./routes/gates/_layout.tsx": $gates_layout,
+    "./routes/gates/index.tsx": $gates_index,
     "./routes/index.tsx": $index,
     "./routes/killmails/[address].tsx": $killmails_address_,
     "./routes/killmails/_layout.tsx": $killmails_layout,
@@ -59,6 +69,7 @@ const manifest = {
       $partials_character_tabs_killmails_address_,
     "./routes/partials/character-tabs/smartassemblies/[address].tsx":
       $partials_character_tabs_smartassemblies_address_,
+    "./routes/partials/map/tooltip/[id].tsx": $partials_map_tooltip_id_,
     "./routes/partials/smartassemblies/smartgate/[id].tsx":
       $partials_smartassemblies_smartgate_id_,
     "./routes/partials/smartassemblies/smartstorageunit/[id].tsx":
@@ -84,8 +95,13 @@ const manifest = {
   },
   islands: {
     "./islands/CharacterSearch.tsx": $CharacterSearch,
+    "./islands/Map.tsx": $Map,
+    "./islands/SolarSystemInGameLink.tsx": $SolarSystemInGameLink,
     "./islands/SolarSystemSearch.tsx": $SolarSystemSearch,
     "./islands/TribeSearch.tsx": $TribeSearch,
+    "./islands/providers/D3Provider.tsx": $providers_D3Provider,
+    "./islands/providers/PopperProvider.tsx": $providers_PopperProvider,
+    "./islands/providers/TippyProvider.tsx": $providers_TippyProvider,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

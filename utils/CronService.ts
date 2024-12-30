@@ -6,7 +6,7 @@ import { QueueService, queueService } from "./QueueService.ts";
 class CronService {
   constructor(private queue: QueueService, private db: ISql) {
     this.queue.register(new KillmailsMessageConsumer(this.db));
-    this.queue.register(new CharactersMessageConsumer(this.db));
+    this.queue.register(new CharactersMessageConsumer());
   }
 
   public init(): void {

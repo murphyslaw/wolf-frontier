@@ -53,7 +53,7 @@ export class SmartAssemblyMessageConsumer implements Consumer {
       fuel_unit_volume: data.fuel.fuelUnitVolume,
       storage_capacity: data.inventory?.storageCapacity || "",
       used_capacity: data.inventory?.usedCapacity || "",
-      destination_gate: data.gateLink?.destinationGate,
+      destination_gate: data.gateLink ? data.gateLink.destinationGate : null,
     };
 
     await this.db`

@@ -18,11 +18,9 @@ export interface DB_SmartAssembly {
   state: string;
   is_online: boolean;
   solar_system_id: number;
-  solar_system_name: string;
   region: string;
   name: string;
   owner_id: string;
-  owner_name: string;
   type_id: number;
   assembly_type: "SmartStorageUnit" | "SmartTurret" | "SmartGate";
   description: string;
@@ -39,7 +37,6 @@ export interface DB_SmartAssembly {
   fuel_unit_volume: number;
   storage_capacity: string;
   used_capacity: string;
-  updated_at: string;
   destination_gate: string | null;
 }
 
@@ -52,7 +49,23 @@ export interface DB_Killmail {
   timestamp: number;
 }
 
+export interface DB_SolarSystem {
+  id: number;
+  name: string;
+  constellation: string | null;
+  region: string | null;
+  x: string | null;
+  y: string | null;
+  z: string | null;
+}
+
 export interface DB_Health {
   online: boolean;
   updated_at: number;
+}
+
+export interface DB_Jumps {
+  source: number;
+  target: number;
+  gate: boolean;
 }

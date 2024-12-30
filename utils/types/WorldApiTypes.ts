@@ -41,7 +41,7 @@ export interface EF_SmartAssembly {
   ownerId: string;
   ownerName: string;
   typeId: number;
-  assemblyType: string;
+  assemblyType: "SmartStorageUnit" | "SmartTurret" | "SmartGate";
   description: string;
   dappUrl: string;
   isValid: boolean;

@@ -1,7 +1,6 @@
 import { SmartAssemblyMessageConsumer } from "./consumers/SmartAssemblyMessageConsumer.ts";
 import { ISql, sql } from "./db.ts";
 import { QueueService, queueService } from "./QueueService.ts";
-import { DB_SmartAssembly } from "./types/DatabaseTypes.ts";
 
 export interface ISmartAssembly {
   smart_assembly_id: string;
@@ -38,7 +37,7 @@ class SmartAssembliesService {
     if (!id) return null;
 
     const [result] = await this
-      .db<DB_SmartAssembly[]>`
+      .db<ISmartAssembly[]>`
         SELECT
           sa.smart_assembly_id,
           sa.item_id,
@@ -81,7 +80,7 @@ class SmartAssembliesService {
     address: string,
   ): Promise<Partial<Record<string, ISmartAssembly[]>>> {
     const result = await this
-      .db<DB_SmartAssembly[]>`
+      .db<ISmartAssembly[]>`
         SELECT
           sa.smart_assembly_id,
           sa.item_id,
@@ -124,7 +123,7 @@ class SmartAssembliesService {
     tribeId: number,
   ): Promise<Partial<Record<string, ISmartAssembly[]>>> {
     const result = await this
-      .db<DB_SmartAssembly[]>`
+      .db<ISmartAssembly[]>`
         SELECT
           sa.smart_assembly_id,
           sa.item_id,
@@ -168,7 +167,7 @@ class SmartAssembliesService {
     solarSystemId: number,
   ): Promise<Partial<Record<string, ISmartAssembly[]>>> {
     const result = await this
-      .db<DB_SmartAssembly[]>`
+      .db<ISmartAssembly[]>`
         SELECT
           sa.smart_assembly_id,
           sa.item_id,
@@ -209,7 +208,7 @@ class SmartAssembliesService {
 
   private async cache(
     smartAssemblies: Pick<
-      DB_SmartAssembly,
+      ISmartAssembly,
       "updated_at" | "smart_assembly_id"
     >[],
   ) {

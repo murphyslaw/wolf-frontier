@@ -13,8 +13,8 @@ export class KillmailsMessageConsumer implements Consumer {
 
   constructor(private db: ISql) {}
 
-  public async consume(msg: unknown): Promise<boolean> {
-    if (!this.isMessageType(msg)) return false;
+  async consume(msg: unknown): Promise<boolean> {
+    if (!this.#isMessageType(msg)) return false;
 
     const response = await worldApiClient.killmails();
 
@@ -34,20 +34,20 @@ export class KillmailsMessageConsumer implements Consumer {
       };
 
       await this.db`
-      INSERT INTO killmails ${this.db(entry)}
-        ON CONFLICT (id) DO UPDATE
-          SET solar_system_id = EXCLUDED.solar_system_id,
-              victim = EXCLUDED.victim,
-              killer = EXCLUDED.killer,
-              timestamp = EXCLUDED.timestamp,
-              loss_type = EXCLUDED.loss_type
+        INSERT INTO killmails ${this.db(entry)}
+          ON CONFLICT (id) DO UPDATE
+            SET solar_system_id = EXCLUDED.solar_system_id,
+                victim = EXCLUDED.victim,
+                killer = EXCLUDED.killer,
+                timestamp = EXCLUDED.timestamp,
+                loss_type = EXCLUDED.loss_type
       `;
     }
 
     return true;
   }
 
-  private isMessageType(object: unknown): object is IKillmailsMessage {
+  #isMessageType(object: unknown): object is IKillmailsMessage {
     return (object as IKillmailsMessage)?.type !== undefined &&
       (object as IKillmailsMessage).type ===
         KillmailsMessageConsumer.MESSAGE_TYPE;

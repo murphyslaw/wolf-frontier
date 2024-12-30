@@ -83,4 +83,6 @@ class WorldApiClient {
   }
 }
 
-export const worldApiClient = new WorldApiClient(new RequestService());
+export const worldApiClient = new WorldApiClient(
+  new RequestService({ intervalMilliseconds: 500, requestsPerInterval: 3 }),
+);

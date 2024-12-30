@@ -1,16 +1,25 @@
-import postgres from "https://deno.land/x/postgresjs@v3.4.5/mod.js";
-import { sql } from "./db.ts";
+import { ISql, sql } from "./db.ts";
+import { DB_SolarSystem } from "./types/DatabaseTypes.ts";
 
 export interface ISolarSystem {
   id: number;
   name: string;
-  x: string;
-  y: string;
-  z: string;
+  constellation: string | null;
+  region: string | null;
+  x: string | null;
+  y: string | null;
+  z: string | null;
+}
+
+export interface ISolarSystemLink {
+  source: number;
+  target: number;
+  distance: number;
+  smartGate: boolean;
 }
 
 class SolarSystemService {
-  constructor(private db: postgres.Sql) {}
+  constructor(private db: ISql) {}
 
   public async count(): Promise<number> {
     const [result] = await this.db`
@@ -23,10 +32,12 @@ class SolarSystemService {
 
   public async get(id: number): Promise<ISolarSystem> {
     const [result] = await this
-      .db<ISolarSystem[]>`
+      .db<DB_SolarSystem[]>`
         SELECT
           ss.id,
           ss.solar_system_name AS "name",
+          ss.constellation,
+          ss.region,
           ss.x,
           ss.y,
           ss.z
@@ -44,10 +55,12 @@ class SolarSystemService {
       : sql`AND ss.id = ${query}`;
 
     const results = await this
-      .db<ISolarSystem[]>`
+      .db<DB_SolarSystem[]>`
           SELECT
             ss.id,
             ss.solar_system_name AS "name",
+            ss.constellation,
+            ss.region,
             ss.x,
             ss.y,
             ss.z

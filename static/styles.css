@@ -157,7 +157,7 @@
   .bulletList {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
     list-style-position: inside;
     list-style-image: url('/images/bullet_list_image.svg');
   }
@@ -356,6 +356,40 @@
         border-bottom-color: theme('colors.white');
         color: theme('colors.white');
       }
+    }
+  }
+
+  button.clipboard:hover {
+    color: theme('colors.orange.600');
+  }
+}
+
+.tippy-box {
+  background-color: theme('colors.gray');
+
+  .tippy-content {
+    padding: 0;
+  }
+}
+
+g.tooltip {
+  &[aria-expanded="false"] {
+    cursor: pointer;
+
+    &:hover {
+
+      text,
+      circle {
+        fill: theme('colors.orange.600');
+      }
+    }
+  }
+
+  &[aria-expanded="true"] {
+
+    text,
+    circle {
+      fill: theme('colors.orange.600');
     }
   }
 }

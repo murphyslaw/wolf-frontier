@@ -1,4 +1,4 @@
-import { ISql } from "../db.ts";
+import { IKv } from "../db.ts";
 import { Consumer } from "../QueueService.ts";
 import { ICharactersMessage } from "../types/MessageTypes.ts";
 import { worldApiClient } from "../WorldApiClient.ts";
@@ -11,9 +11,9 @@ export class CharactersMessageConsumer implements Consumer {
     return { type: this.MESSAGE_TYPE };
   }
 
-  constructor(private db: ISql) {}
+  constructor() {}
 
-  public async consume(msg: unknown): Promise<boolean> {
+  public async consume(msg: unknown, queue: IKv): Promise<boolean> {
     if (!this.isMessageType(msg)) return false;
 
     const data = await worldApiClient.smartcharacters();
@@ -23,9 +23,8 @@ export class CharactersMessageConsumer implements Consumer {
       return true;
     }
 
-    const characterMessageConsumer = new CharacterMessageConsumer(this.db);
     for (const dbCharacter of data) {
-      characterMessageConsumer.consume(
+      queue.enqueue(
         CharacterMessageConsumer.createMessage(dbCharacter.address),
       );
     }
