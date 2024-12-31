@@ -48,8 +48,8 @@ export default function Map(props: Props) {
 
   const container = useRef<HTMLDivElement>(null);
 
-  const width = 2500;
-  const height = 2500;
+  const width = 3500;
+  const height = 3500;
 
   // The force simulation mutates links and nodes, so create a copy
   // so that re-evaluating this cell produces the same result.

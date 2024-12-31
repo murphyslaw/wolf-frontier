@@ -27,6 +27,7 @@ export interface EF_SmartAssembly {
   stateId: number;
   state: string;
   isOnline: boolean;
+  solarSystemId: number;
   solarSystem: {
     solarSystemId: number;
     solarSystemName: string;

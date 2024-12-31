@@ -33,7 +33,8 @@ export class SmartAssemblyMessageConsumer implements Consumer {
       state_id: data.stateId,
       state: data.state,
       is_online: data.isOnline,
-      solar_system_id: data.solarSystem.solarSystemId,
+      solar_system_id: data.solarSystemId || data.solarSystem.solarSystemId ||
+        null,
       name: data.name,
       owner_id: data.ownerId,
       type_id: data.typeId,

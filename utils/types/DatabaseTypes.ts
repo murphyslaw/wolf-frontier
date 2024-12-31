@@ -17,7 +17,7 @@ export interface DB_SmartAssembly {
   state_id: number;
   state: string;
   is_online: boolean;
-  solar_system_id: number;
+  solar_system_id: number | null;
   region: string;
   name: string;
   owner_id: string;
