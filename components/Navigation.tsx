@@ -20,6 +20,10 @@ const items = [
     label: "Gates",
   },
   {
+    href: "/community",
+    label: "Community",
+  },
+  {
     href: "/news",
     label: "News",
   },

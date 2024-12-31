@@ -43,7 +43,7 @@ export function Character(props: { character: ICharacter }) {
 
           <a
             href={`/tribes/${props.character.tribe_id}`}
-            class="bodyMedium text-orange-600 hover:text-white"
+            class="bodyMedium inverted"
           >
             {props.character.tribe} [{props.character.ticker}]
           </a>

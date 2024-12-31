@@ -9,6 +9,8 @@ import * as $_layout from "./routes/_layout.tsx";
 import * as $characters_address_ from "./routes/characters/[address].tsx";
 import * as $characters_layout from "./routes/characters/_layout.tsx";
 import * as $characters_index from "./routes/characters/index.tsx";
+import * as $community_layout from "./routes/community/_layout.tsx";
+import * as $community_index from "./routes/community/index.tsx";
 import * as $gates_layout from "./routes/gates/_layout.tsx";
 import * as $gates_index from "./routes/gates/index.tsx";
 import * as $index from "./routes/index.tsx";
@@ -55,6 +57,8 @@ const manifest = {
     "./routes/characters/[address].tsx": $characters_address_,
     "./routes/characters/_layout.tsx": $characters_layout,
     "./routes/characters/index.tsx": $characters_index,
+    "./routes/community/_layout.tsx": $community_layout,
+    "./routes/community/index.tsx": $community_index,
     "./routes/gates/_layout.tsx": $gates_layout,
     "./routes/gates/index.tsx": $gates_index,
     "./routes/index.tsx": $index,

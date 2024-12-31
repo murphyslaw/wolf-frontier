@@ -67,7 +67,14 @@ export class RequestService {
       if (!entities.length) break;
 
       for (const entity of entities) {
-        const response: HTTPResponse<T> = await fetch(entity.request);
+        let response: HTTPResponse<T>;
+
+        try {
+          response = await fetch(entity.request);
+        } catch (error) {
+          entity.reject(new Error("fetch failed", { cause: error }));
+          continue;
+        }
 
         try {
           response.parsedBody = await response.json();
@@ -85,6 +92,7 @@ export class RequestService {
           });
 
           entity.reject(error);
+          continue;
         }
 
         entity.resolve(response);

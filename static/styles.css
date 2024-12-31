@@ -123,6 +123,14 @@
     &:hover {
       color: theme('colors.orange.600');
     }
+
+    &.inverted {
+      color: theme('colors.orange.600');
+
+      &:hover {
+        color: theme('colors.white');
+      }
+    }
   }
 
   footer a {
@@ -361,6 +369,10 @@
 
   button.clipboard:hover {
     color: theme('colors.orange.600');
+  }
+
+  dl dd {
+    margin-bottom: 2rem;
   }
 }
 
