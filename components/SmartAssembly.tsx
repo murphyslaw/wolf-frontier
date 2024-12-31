@@ -55,6 +55,7 @@ export function SmartAssembly({ smartAssembly }: Props) {
             <a
               href={`/solarsystems/${smartAssembly.solar_system_id}`}
               class="bodyMedium text-white"
+              f-client-nav={false}
             >
               {smartAssembly.solar_system_name}
             </a>
