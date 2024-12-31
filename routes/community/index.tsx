@@ -44,7 +44,10 @@ export default function Community() {
         <dd>
           Well...that's the page you are on right now, which offers deeper
           insights into characters, tribes, smart assemblies, killmails and the
-          star map.
+          star map. The{" "}
+          <a href="https://github.com/murphyslaw/wolf-frontier">
+            page code is also available online
+          </a>.
         </dd>
       </dl>
 
