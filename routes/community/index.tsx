@@ -65,6 +65,29 @@ export default function Community() {
         </dd>
 
         <dt>
+          <a class="inverted" href="https://frontier-atlas.com/">
+            ATLAS Star Map
+          </a>
+        </dt>
+        <dd>
+          Incredible 3D Star Map with path planning funcionality in very slick
+          look. Get the{" "}
+          <a href="https://discord.com/channels/1021714190102175754/1313858399116591144/1323989647172440136">
+            access code from Discord
+          </a>.
+        </dd>
+
+        <dt>
+          <a class="inverted" href="https://eve.wellscargo.space/">
+            Stellar Carthography
+          </a>
+        </dt>
+        <dd>
+          Terrific star map featuring smart gate access logic and path finding
+          algorithms, based on your character.
+        </dd>
+
+        <dt>
           <a class="inverted" href="https://eftb.shish.io/">
             EVE Frontier Toolbox
           </a>
