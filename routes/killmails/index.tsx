@@ -33,7 +33,7 @@ export default function KillmailsOverviewPage(
 ) {
   return (
     <section class="flex flex-col gap-y-8 items-center">
-      <div class="grid grid-cols-3 gap-x-8 w-full justify-center">
+      <div class="flex flex-wrap gap-8 w-full">
         <TopKills results={topCharacters} category="Character" />
 
         <TopKills results={topTribes} category="Tribe" />
