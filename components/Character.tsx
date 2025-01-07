@@ -1,9 +1,9 @@
-import { characterService, ICharacter } from "../utils/CharacterService.ts";
+import { ICharacter } from "../utils/CharacterService.ts";
 import { BlockchainLink } from "./BlockchainLink.tsx";
 import { EveToken } from "./EveToken.tsx";
 
 export function Character(props: { character: ICharacter }) {
-  const isOfficer = characterService.isOfficer(props.character.name);
+  const isOfficer = props.character.officer;
 
   return (
     <div class="flex flex-row gap-4">
