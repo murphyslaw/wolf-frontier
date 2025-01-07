@@ -10,7 +10,7 @@ export default defineLayout(async (_req, ctx) => {
     <>
       <div
         class="px-12 py-8 mx-auto bg-no-repeat flex flex-col gap-y-10 bg-black"
-        style="background-image: url('/images/fade_bg.webp')"
+        style="background-image: url('/images/fade_bg.webp'); background-size: 100%;"
       >
         <Header />
 
