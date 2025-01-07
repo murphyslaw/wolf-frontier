@@ -9,12 +9,91 @@ export default function News() {
         <article class="max-w-[40vw] flex flex-col gap-y-8 mx-auto">
           <header>
             <h2 class="headlineLarge">
+              content and visual improvements
+            </h2>
+
+            <time
+              class="labelMedium text-grayLight"
+              datetime="2025-01-07 21:05"
+            >
+              2025-01-07 21:05
+            </time>
+          </header>
+
+          <main class="flex flex-col gap-y-8">
+            <p class="bodyMedium">
+              The EVE Frontier developer community is very active and a couple
+              of awesome map projects have sprung up as well as several
+              improvements on explorer pages. We have also been busy and
+              improved the site in many more subtle ways.
+            </p>
+
+            <p class="bodyMedium">
+              In the last news, we proudly shared that we can now display all
+              gate networks. It turns out, that other developers have done a
+              much better job in doing this and instead of replicating these
+              features, we decided to integrate links to the{" "}
+              <a href="frontier-atlas.com">ATLAS Map</a>. You can now open a
+              solar system directly on the map by clicking the pin icon. The
+              "gates" link has been removed.
+            </p>
+
+            <p class="bodyMedium">
+              Additionally, we've included the number of solar systems in the
+              region and constellation, which should help you to determine, if
+              the region is feasable to search for rifts effectively or how big
+              the effort would be.
+            </p>
+
+            <img
+              class="bordered"
+              src="/images/news/solar-system-improvements.jpg"
+            />
+
+            <p class="bodyMedium">
+              As requested, we now also added the tribe information to the
+              characters involved in the killmail. In general, the killmail page
+              became a bit more mobile friendly and the manually managed tribe
+              database got extended slightly and should include more tribes now.
+              The tribe display also got a little update and now displays the
+              tribe image already in compact form (on the search result or
+              tabbed pages).
+            </p>
+
+            <img
+              class="bordered"
+              src="/images/news/tribes-on-killmails.jpg"
+            />
+
+            <p class="bodyMedium">
+              Characters that are a known CEO or Founder now get the green
+              officers badge, instead of a hard coded list of players. Remember,
+              the tribe list is manually maintained, so if you find your tribe
+              or your badge missing, please contact us and give us some details
+              about your tribe.
+            </p>
+
+            <img
+              class="bordered"
+              src="/images/news/tribe-ceo-founder.jpg"
+            />
+
+            <p class="bodyMedium">
+              Greetings,<br />
+              Murphyslaw
+            </p>
+          </main>
+        </article>
+
+        <article class="max-w-[40vw] flex flex-col gap-y-8 mx-auto">
+          <header>
+            <h2 class="headlineLarge">
               gate network visualisation
             </h2>
 
             <time
               class="labelMedium text-grayLight"
-              datetime="2024-12-21 09:00"
+              datetime="2024-12-30 22:54"
             >
               2024-12-30 22:54
             </time>
@@ -79,7 +158,7 @@ export default function News() {
 
             <time
               class="labelMedium text-grayLight"
-              datetime="2024-12-21 09:00"
+              datetime="2024-12-27 16:17"
             >
               2024-12-27 16:17
             </time>
@@ -147,7 +226,7 @@ export default function News() {
 
             <time
               class="labelMedium text-grayLight"
-              datetime="2024-12-21 09:00"
+              datetime="2024-12-23 17:29"
             >
               2024-12-23 17:29
             </time>
@@ -199,7 +278,7 @@ export default function News() {
 
             <time
               class="labelMedium text-grayLight"
-              datetime="2024-12-21 09:00"
+              datetime="2024-12-21 09:09"
             >
               2024-12-21 09:09
             </time>
