@@ -34,4 +34,11 @@
     <path fill="currentColor"
       d="M12 2.25c-.943 0-1.614.668-1.945 1.5H4.5V21h15V3.75h-5.555c-.33-.832-1.002-1.5-1.945-1.5Zm0 1.5c.416 0 .75.334.75.75v.75H15v1.5H9v-1.5h2.25V4.5c0-.416.334-.75.75-.75Zm-6 1.5h1.5v3h9v-3H18V19.5H6V5.25Z" />
   </symbol>
+
+  <symbol id="pin" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M3.36 10.867a8.64 8.64 0 1 1 17.28 0m-17.28 0c0 5.856 6.49 10.56 8.64 10.56 2.15 0 8.64-4.704 8.64-10.56" />
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M12 14.707a3.84 3.84 0 1 0 0-7.68 3.84 3.84 0 0 0 0 7.68Z" />
+  </symbol>
 </svg>

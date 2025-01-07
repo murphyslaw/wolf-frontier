@@ -22,7 +22,7 @@ export function SolarSystemInGameLink({ id, name }: Props) {
       data-name={name}
       onClick={onClickHandler}
     >
-      <svg class="w-4 h-4">
+      <svg>
         <use href="/images/icons.svg#clipboard" />
       </svg>
     </button>

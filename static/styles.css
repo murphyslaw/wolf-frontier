@@ -367,8 +367,25 @@
     }
   }
 
-  button.clipboard:hover {
-    color: theme('colors.orange.600');
+  button.clipboard,
+  a.map {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.25rem;
+    width: 2.25rem;
+    border-radius: 0.375rem;
+
+    &:hover {
+      color: theme('colors.orange.600');
+      background-color: theme('colors.gray');
+    }
+
+    & svg {
+      height: 1rem;
+      width: 1rem;
+    }
   }
 
   dl dd {

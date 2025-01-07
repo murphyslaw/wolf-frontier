@@ -1,5 +1,6 @@
 import { SolarSystemInGameLink } from "../islands/SolarSystemInGameLink.tsx";
 import { ISolarSystem } from "../utils/SolarSystemService.ts";
+import { SolarSystemMapLink } from "./SolarSystemMapLink.tsx";
 
 export function SolarSystem({ solarSystem }: { solarSystem: ISolarSystem }) {
   return (
@@ -19,10 +20,16 @@ export function SolarSystem({ solarSystem }: { solarSystem: ISolarSystem }) {
               {solarSystem.id}
             </label>
 
-            <SolarSystemInGameLink
-              id={solarSystem.id}
-              name={solarSystem.name}
-            />
+            <div>
+              <SolarSystemInGameLink
+                id={solarSystem.id}
+                name={solarSystem.name}
+              />
+
+              <SolarSystemMapLink
+                id={solarSystem.id}
+              />
+            </div>
           </div>
 
           <h1 class="headlineLarge">
@@ -30,12 +37,20 @@ export function SolarSystem({ solarSystem }: { solarSystem: ISolarSystem }) {
           </h1>
 
           <ul class="bulletList">
-            <li class="text-nowrap">REGION: {solarSystem.region}</li>
             <li class="text-nowrap">
-              CONSTELLATION: {solarSystem.constellation}
+              REGION: {solarSystem.region}{" "}
+              ({solarSystem.region_solar_system_count} solar systems)
             </li>
+
+            <li class="text-nowrap">
+              CONSTELLATION: {solarSystem.constellation}{" "}
+              ({solarSystem.constellation_solar_system_count} solar systems)
+            </li>
+
             <li class="text-nowrap">X: {solarSystem.x}</li>
+
             <li class="text-nowrap">Y: {solarSystem.y}</li>
+
             <li class="text-nowrap">Z: {solarSystem.z}</li>
           </ul>
         </div>

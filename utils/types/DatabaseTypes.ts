@@ -57,6 +57,8 @@ export interface DB_SolarSystem {
   x: string | null;
   y: string | null;
   z: string | null;
+  region_solar_system_count: number;
+  constellation_solar_system_count: number;
 }
 
 export interface DB_Health {

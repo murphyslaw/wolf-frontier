@@ -9,6 +9,8 @@ export interface ISolarSystem {
   x: string | null;
   y: string | null;
   z: string | null;
+  region_solar_system_count: number;
+  constellation_solar_system_count: number;
 }
 
 export interface ISolarSystemLink {
@@ -33,6 +35,27 @@ class SolarSystemService {
   public async get(id: number): Promise<ISolarSystem> {
     const [result] = await this
       .db<DB_SolarSystem[]>`
+        WITH
+          regions AS (
+            SELECT
+              r.id,
+              COUNT(r.id) AS "count"
+            FROM
+              regions r
+              LEFT OUTER JOIN solarsystems ss ON ss.region = r.id
+            GROUP BY
+              r.id
+          ),
+          constellations AS (
+            SELECT
+              c.id,
+              COUNT(c.id) AS "count"
+            FROM
+              constellations c
+              LEFT OUTER JOIN solarsystems ss ON ss.constellation = c.id
+            GROUP BY
+              c.id
+          )
         SELECT
           ss.id,
           ss.solar_system_name AS "name",
@@ -40,11 +63,18 @@ class SolarSystemService {
           ss.region,
           ss.x,
           ss.y,
-          ss.z
-        FROM solarsystems ss
+          ss.z,
+          r.count AS "region_solar_system_count",
+          c.count AS "constellation_solar_system_count"
+        FROM
+          solarsystems ss
+        LEFT JOIN regions r ON r.id = ss.region
+        LEFT JOIN constellations c ON c.id = ss.constellation
         WHERE TRUE
-        AND ss.id = ${id}
+          AND ss.id = ${id}
       ;`;
+
+    console.log(result);
 
     return result;
   }
@@ -56,20 +86,46 @@ class SolarSystemService {
 
     const results = await this
       .db<DB_SolarSystem[]>`
-          SELECT
-            ss.id,
-            ss.solar_system_name AS "name",
-            ss.constellation,
-            ss.region,
-            ss.x,
-            ss.y,
-            ss.z
-          FROM solarsystems ss
-          WHERE TRUE
-            ${where}
-          ORDER BY
-            name ASC
-        ;`;
+        WITH
+          regions AS (
+            SELECT
+              r.id,
+              COUNT(r.id) AS "count"
+            FROM
+              regions r
+              LEFT OUTER JOIN solarsystems ss ON ss.region = r.id
+            GROUP BY
+              r.id
+          ),
+          constellations AS (
+            SELECT
+              c.id,
+              COUNT(c.id) AS "count"
+            FROM
+              constellations c
+              LEFT OUTER JOIN solarsystems ss ON ss.constellation = c.id
+            GROUP BY
+              c.id
+          )
+        SELECT
+          ss.id,
+          ss.solar_system_name AS "name",
+          ss.constellation,
+          ss.region,
+          ss.x,
+          ss.y,
+          ss.z,
+          r.count AS "region_solar_system_count",
+          c.count AS "constellation_solar_system_count"
+        FROM
+          solarsystems ss
+        LEFT JOIN regions r ON r.id = ss.region
+        LEFT JOIN constellations c ON c.id = ss.constellation
+        WHERE TRUE
+          ${where}
+        ORDER BY
+          name ASC
+      ;`;
 
     return results;
   }
