@@ -6,16 +6,24 @@ export function TribeCompact(
   return (
     <a
       href={`/tribes/${props.tribe.id}`}
-      class="flex flex-col p-2 bodyMedium transition-all bordered hover:text-inherit hover:border-white"
+      class="flex flex-row gap-2 p-2 items-center bodyMedium transition-all bordered hover:text-inherit hover:border-white"
       f-client-nav={false}
     >
-      <p>
-        {props.tribe.name} [{props.tribe.ticker}]
-      </p>
+      <img
+        src={`/images/tribes/${props.tribe.id % 10}.png`}
+        width="48px"
+        height="48px"
+      />
 
-      <span class="labelLarge text-grayLight">
-        Member Count: {props.tribe.count}
-      </span>
+      <div class="flex flex-col p-2">
+        <p>
+          {props.tribe.name} [{props.tribe.ticker}]
+        </p>
+
+        <span class="labelLarge text-grayLight">
+          Member Count: {props.tribe.count}
+        </span>
+      </div>
     </a>
   );
 }
