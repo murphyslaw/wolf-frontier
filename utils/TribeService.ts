@@ -121,6 +121,38 @@ class TribeService {
 
     return results;
   }
+
+  public async findAllByIds(ids: number[]): Promise<ITribe[]> {
+    const results = await this
+      .db<ITribe[]>`
+        WITH
+        members AS (
+          SELECT
+            sc.tribe_id,
+            COUNT(*) AS "count"
+          FROM smartcharacters sc
+          GROUP BY
+            sc.tribe_id
+        )
+
+        SELECT
+          t.id,
+          COALESCE(t.name, t.id::text) AS "name",
+          COALESCE(t.ticker, 'UNKNOWN') AS "ticker",
+          t.url,
+          t.ceo,
+          t.founder,
+          m.count
+        FROM tribes t
+        JOIN members m ON m.tribe_id = t.id
+        WHERE TRUE
+          AND t.id IN ${this.db(ids)}
+        ORDER BY
+          name ASC
+      ;`;
+
+    return results;
+  }
 }
 
 export const tribeService = new TribeService(sql);

@@ -4,18 +4,18 @@ export function TribeCompact(
   props: { tribe: ITribe },
 ) {
   return (
-    <p class="flex flex-col w-full">
-      <a
-        href={`/tribes/${props.tribe.id}`}
-        class="bodyMedium block"
-        f-client-nav={false}
-      >
+    <a
+      href={`/tribes/${props.tribe.id}`}
+      class="flex flex-col p-2 bodyMedium transition-all bordered hover:text-inherit hover:border-white"
+      f-client-nav={false}
+    >
+      <p>
         {props.tribe.name} [{props.tribe.ticker}]
-      </a>
+      </p>
 
       <span class="labelLarge text-grayLight">
         Member Count: {props.tribe.count}
       </span>
-    </p>
+    </a>
   );
 }

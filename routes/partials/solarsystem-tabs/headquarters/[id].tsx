@@ -24,7 +24,7 @@ export default defineRoute(async (_req, ctx) => {
         active="headquarters"
       />
 
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-wrap gap-4">
         {tribes.map((tribe) => <TribeCompact key={tribe.id} tribe={tribe} />)}
       </div>
     </Partial>
