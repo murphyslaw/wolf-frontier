@@ -11,6 +11,7 @@ export interface ICharacter {
   tribe: string;
   ticker: string;
   updated_at: number;
+  officer: boolean;
 }
 
 class CharacterService {
@@ -41,7 +42,8 @@ class CharacterService {
           sc.tribe_id,
           COALESCE(t.name, sc.tribe_id::text) AS "tribe",
           COALESCE(t.ticker, 'UNKNOWN') AS "ticker",
-          sc.updated_at
+          sc.updated_at,
+          (t.ceo = sc.address OR t.founder = sc.address) AS "officer"
         FROM smartcharacters sc
         LEFT JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
@@ -67,7 +69,8 @@ class CharacterService {
           sc.tribe_id,
           COALESCE(t.name, sc.tribe_id::text) AS "tribe",
           COALESCE(t.ticker, 'UNKNOWN') AS "ticker",
-          sc.updated_at
+          sc.updated_at,
+          (t.ceo = sc.address OR t.founder = sc.address) AS "officer"
         FROM smartcharacters sc
         LEFT JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
@@ -93,7 +96,8 @@ class CharacterService {
           sc.tribe_id,
           COALESCE(t.name, sc.tribe_id::text) AS "tribe",
           COALESCE(t.ticker, 'UNKNOWN') AS "ticker",
-          sc.updated_at
+          sc.updated_at,
+          (t.ceo = sc.address OR t.founder = sc.address) AS "officer"
         FROM smartcharacters sc
         LEFT JOIN tribes t ON t.id = sc.tribe_id
         WHERE TRUE
@@ -105,13 +109,6 @@ class CharacterService {
     this.cache(result);
 
     return result;
-  }
-
-  public isOfficer(name: string) {
-    return ["twisted", "zaroot", "dracula", "ukfatguy", "necstz", "murphyslaw"]
-      .includes(
-        name.toLowerCase(),
-      );
   }
 
   private async cache(characters: ICharacter[]) {

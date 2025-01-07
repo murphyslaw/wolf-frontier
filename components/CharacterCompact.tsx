@@ -1,7 +1,7 @@
-import { characterService, ICharacter } from "../utils/CharacterService.ts";
+import { ICharacter } from "../utils/CharacterService.ts";
 
 export function CharacterCompact(props: { character: ICharacter }) {
-  const isOfficer = characterService.isOfficer(props.character.name);
+  const isOfficer = props.character.officer;
 
   return (
     <a
