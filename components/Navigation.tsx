@@ -16,10 +16,6 @@ const items = [
     label: "Solar Systems",
   },
   {
-    href: "/gates",
-    label: "Gates",
-  },
-  {
     href: "/community",
     label: "Community",
   },
