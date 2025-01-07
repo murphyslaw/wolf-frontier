@@ -6,8 +6,10 @@ export interface IKillMail {
   id: number;
   victim: string;
   victim_name: string;
+  victim_tribe: string;
   killer: string;
   killer_name: string;
+  killer_tribe: string;
   solar_system_id: number;
   solar_system_name: string;
   loss_type: string;
@@ -122,18 +124,23 @@ class KillmailService {
         SELECT
           km.id,
           km.victim,
-          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.victim) AS "victim_name",
+          victim_sc.name AS "victim_name",
+          COALESCE(victim_tribe.ticker, 'UNKNOWN') AS "victim_tribe",
           km.killer,
-          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.killer) AS "killer_name",
+          killer_sc.name AS "killer_name",
+          COALESCE(killer_tribe.ticker, 'UNKNOWN') AS "killer_tribe",
           km.solar_system_id,
-          (SELECT ss.solar_system_name FROM solarsystems ss WHERE ss.id = km.solar_system_id) AS "solar_system_name",
+          ss.solar_system_name AS "solar_system_name",
           km.loss_type,
           km.timestamp
         FROM killmails km
-        JOIN smartcharacters sc ON sc.address = km.victim OR sc.address = km.killer
-        JOIN tribes t ON t.id = sc.tribe_id
+        LEFT JOIN smartcharacters victim_sc ON victim_sc.address = km.victim
+        LEFT JOIN smartcharacters killer_sc ON killer_sc.address = km.killer
+        LEFT JOIN tribes victim_tribe ON victim_tribe.id = victim_sc.tribe_id
+        LEFT JOIN tribes killer_tribe ON killer_tribe.id = killer_sc.tribe_id
+        LEFT JOIN solarsystems ss ON ss.id = km.solar_system_id
         WHERE TRUE
-          AND sc.tribe_id = ${tribeId}
+          AND (victim_sc.tribe_id = ${tribeId} OR killer_sc.tribe_id = ${tribeId})
         ORDER BY
           km.timestamp DESC
         LIMIT 100
@@ -148,17 +155,23 @@ class KillmailService {
         SELECT
           km.id,
           km.victim,
-          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.victim) AS "victim_name",
+          victim_sc.name AS "victim_name",
+          COALESCE(victim_tribe.ticker, 'UNKNOWN') AS "victim_tribe",
           km.killer,
-          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.killer) AS "killer_name",
+          killer_sc.name AS "killer_name",
+          COALESCE(killer_tribe.ticker, 'UNKNOWN') AS "killer_tribe",
           km.solar_system_id,
-          (SELECT ss.solar_system_name FROM solarsystems ss WHERE ss.id = km.solar_system_id) AS "solar_system_name",
+          ss.solar_system_name AS "solar_system_name",
           km.loss_type,
           km.timestamp
         FROM killmails km
-        JOIN smartcharacters sc ON sc.address = km.victim OR sc.address = km.killer
+        LEFT JOIN smartcharacters victim_sc ON victim_sc.address = km.victim
+        LEFT JOIN smartcharacters killer_sc ON killer_sc.address = km.killer
+        LEFT JOIN tribes victim_tribe ON victim_tribe.id = victim_sc.tribe_id
+        LEFT JOIN tribes killer_tribe ON killer_tribe.id = killer_sc.tribe_id
+        LEFT JOIN solarsystems ss ON ss.id = km.solar_system_id
         WHERE TRUE
-          AND sc.address = ${address}
+          AND (victim_sc.address = ${address} OR killer_sc.address = ${address})
         ORDER BY
           km.timestamp DESC
         LIMIT 100
@@ -173,14 +186,21 @@ class KillmailService {
         SELECT
           km.id,
           km.victim,
-          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.victim) AS "victim_name",
+          victim_sc.name AS "victim_name",
+          COALESCE(victim_tribe.ticker, 'UNKNOWN') AS "victim_tribe",
           km.killer,
-          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.killer) AS "killer_name",
+          killer_sc.name AS "killer_name",
+          COALESCE(killer_tribe.ticker, 'UNKNOWN') AS "killer_tribe",
           km.solar_system_id,
-          (SELECT ss.solar_system_name FROM solarsystems ss WHERE ss.id = km.solar_system_id) AS "solar_system_name",
+          ss.solar_system_name AS "solar_system_name",
           km.loss_type,
           km.timestamp
         FROM killmails km
+        LEFT JOIN smartcharacters victim_sc ON victim_sc.address = km.victim
+        LEFT JOIN smartcharacters killer_sc ON killer_sc.address = km.killer
+        LEFT JOIN tribes victim_tribe ON victim_tribe.id = victim_sc.tribe_id
+        LEFT JOIN tribes killer_tribe ON killer_tribe.id = killer_sc.tribe_id
+        LEFT JOIN solarsystems ss ON ss.id = km.solar_system_id
         ORDER BY
           km.timestamp DESC
         LIMIT 100
@@ -195,14 +215,21 @@ class KillmailService {
         SELECT
           km.id,
           km.victim,
-          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.victim) AS "victim_name",
+          victim_sc.name AS "victim_name",
+          COALESCE(victim_tribe.ticker, 'UNKNOWN') AS "victim_tribe",
           km.killer,
-          (SELECT sc.name FROM smartcharacters sc WHERE sc.address = km.killer) AS "killer_name",
+          killer_sc.name AS "killer_name",
+          COALESCE(killer_tribe.ticker, 'UNKNOWN') AS "killer_tribe",
           km.solar_system_id,
-          (SELECT ss.solar_system_name FROM solarsystems ss WHERE ss.id = km.solar_system_id) AS "solar_sytem_name",
+          ss.solar_system_name AS "solar_system_name",
           km.loss_type,
           km.timestamp
         FROM killmails km
+        LEFT JOIN smartcharacters victim_sc ON victim_sc.address = km.victim
+        LEFT JOIN smartcharacters killer_sc ON killer_sc.address = km.killer
+        LEFT JOIN tribes victim_tribe ON victim_tribe.id = victim_sc.tribe_id
+        LEFT JOIN tribes killer_tribe ON killer_tribe.id = killer_sc.tribe_id
+        LEFT JOIN solarsystems ss ON ss.id = km.solar_system_id
         WHERE TRUE
           AND km.solar_system_id = ${solarSystemId}
         ORDER BY

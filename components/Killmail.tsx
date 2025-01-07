@@ -31,7 +31,7 @@ export function Killmail({ killmail }: Props) {
             class="text-orange-600 hover:text-orange-600 hover:underline"
             f-client-nav={false}
           >
-            {killmail.killer_name || "unknown"}
+            {killmail.killer_name || "unknown"} [{killmail.killer_tribe}]
           </a>{" "}
           killed{" "}
           <a
@@ -39,7 +39,7 @@ export function Killmail({ killmail }: Props) {
             class="text-blue-600 hover:text-blue-600 hover:underline"
             f-client-nav={false}
           >
-            {killmail.victim_name || "unknown"}
+            {killmail.victim_name || "unknown"} [{killmail.victim_tribe}]
           </a>
         </h3>
 
