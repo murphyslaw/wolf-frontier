@@ -16,6 +16,10 @@ const items = [
     label: "Solar Systems",
   },
   {
+    href: "/types",
+    label: "Types",
+  },
+  {
     href: "/community",
     label: "Community",
   },

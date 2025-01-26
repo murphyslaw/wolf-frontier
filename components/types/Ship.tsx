@@ -1,7 +1,9 @@
-import { IType } from "../../utils/TypeService.ts";
+import { calculateMaxJumpDistance } from "../../utils/MathHelper.ts";
+import { IType, typeService } from "../../utils/TypeService.ts";
+import { BlockchainLink } from "../BlockchainLink.tsx";
 
 export default function Ship({ type }: { type: IType }) {
-  const maxJumpDistance: number = 22100 * 40 * (100000 / (type.mass + 800000));
+  const maxJumpDistance: number = calculateMaxJumpDistance(type);
 
   return (
     <div class="flex flex-row gap-4">
@@ -19,10 +21,14 @@ export default function Ship({ type }: { type: IType }) {
             <label class="labelLarge text-grayLight">
               {type.category_name} ({type.group_name})
             </label>
+
+            <BlockchainLink
+              path={`types/${type.id}`}
+            />
           </div>
 
           <h2 class="headlineLarge">
-            {type.name}
+            {typeService.patchName(type)}
           </h2>
         </div>
 
@@ -32,15 +38,15 @@ export default function Ship({ type }: { type: IType }) {
           </li>
 
           <li>
-            Mass (kg): {type.mass}
+            Mass: {type.mass} kg
           </li>
 
           <li>
-            Volume (m^3): {type.volume}
+            Volume: {type.volume.toFixed(2)} m<sup>3</sup>
           </li>
 
           <li>
-            Max Jump Distance: {maxJumpDistance}
+            Max Jump Distance: {maxJumpDistance.toFixed(2)} ly
           </li>
         </ul>
       </div>

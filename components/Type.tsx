@@ -30,11 +30,11 @@ export default function Type({ type }: { type: IType }) {
           </li>
 
           <li>
-            Mass (kg): {type.mass}
+            Mass: {type.mass.toFixed(2)} kg
           </li>
 
           <li>
-            Volume (m^3): {type.volume}
+            Volume: {type.volume.toFixed(2)} m<sup>3</sup>
           </li>
         </ul>
       </div>

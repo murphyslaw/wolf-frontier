@@ -57,7 +57,11 @@ class TypeService {
         FROM
           types t
         WHERE TRUE
-          AND LOWER(t.name) LIKE LOWER(${"%" + query + "%"})
+          AND (
+            LOWER(t.name) LIKE LOWER(${"%" + query + "%"})
+            OR LOWER(t.category_name) LIKE LOWER(${"%" + query + "%"})
+            OR LOWER(t.group_name) LIKE LOWER(${"%" + query + "%"})
+          )
         ORDER BY
           name ASC
       ;`;
@@ -85,6 +89,31 @@ class TypeService {
       ;`;
 
     return results;
+  }
+
+  public patchName(type: IType): string {
+    let name = "UNKNOWN";
+
+    switch (type.id) {
+      case 84213: {
+        name = "Explorer";
+        break;
+      }
+      case 85036: {
+        name = "Forager";
+        break;
+      }
+      case 84216: {
+        name = "Gunboat";
+        break;
+      }
+      default: {
+        name = type.name;
+        break;
+      }
+    }
+
+    return name;
   }
 }
 
