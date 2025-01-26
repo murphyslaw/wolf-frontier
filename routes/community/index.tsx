@@ -55,13 +55,13 @@ export default function Community() {
 
       <dl>
         <dt>
-          <a class="inverted" href="https://endeavortrade.org/map">
+          <a class="inverted" href="https://endeavortrade.org/#/map">
             The Ultimate Star Map
           </a>
         </dt>
         <dd>
-          Best, player made star map available, even featuring a route planner
-          based on access to smart gates.
+          Awesome, player made star map, even featuring a route planner based on
+          access to smart gates.
         </dd>
 
         <dt>

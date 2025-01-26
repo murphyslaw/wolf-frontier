@@ -38,11 +38,15 @@ import * as $solarsystems_index from "./routes/solarsystems/index.tsx";
 import * as $tribes_id_ from "./routes/tribes/[id].tsx";
 import * as $tribes_layout from "./routes/tribes/_layout.tsx";
 import * as $tribes_index from "./routes/tribes/index.tsx";
+import * as $types_id_ from "./routes/types/[id].tsx";
+import * as $types_layout from "./routes/types/_layout.tsx";
+import * as $types_index from "./routes/types/index.tsx";
 import * as $CharacterSearch from "./islands/CharacterSearch.tsx";
 import * as $Map from "./islands/Map.tsx";
 import * as $SolarSystemInGameLink from "./islands/SolarSystemInGameLink.tsx";
 import * as $SolarSystemSearch from "./islands/SolarSystemSearch.tsx";
 import * as $TribeSearch from "./islands/TribeSearch.tsx";
+import * as $TypeSearch from "./islands/TypeSearch.tsx";
 import * as $providers_D3Provider from "./islands/providers/D3Provider.tsx";
 import * as $providers_PopperProvider from "./islands/providers/PopperProvider.tsx";
 import * as $providers_TippyProvider from "./islands/providers/TippyProvider.tsx";
@@ -96,6 +100,9 @@ const manifest = {
     "./routes/tribes/[id].tsx": $tribes_id_,
     "./routes/tribes/_layout.tsx": $tribes_layout,
     "./routes/tribes/index.tsx": $tribes_index,
+    "./routes/types/[id].tsx": $types_id_,
+    "./routes/types/_layout.tsx": $types_layout,
+    "./routes/types/index.tsx": $types_index,
   },
   islands: {
     "./islands/CharacterSearch.tsx": $CharacterSearch,
@@ -103,6 +110,7 @@ const manifest = {
     "./islands/SolarSystemInGameLink.tsx": $SolarSystemInGameLink,
     "./islands/SolarSystemSearch.tsx": $SolarSystemSearch,
     "./islands/TribeSearch.tsx": $TribeSearch,
+    "./islands/TypeSearch.tsx": $TypeSearch,
     "./islands/providers/D3Provider.tsx": $providers_D3Provider,
     "./islands/providers/PopperProvider.tsx": $providers_PopperProvider,
     "./islands/providers/TippyProvider.tsx": $providers_TippyProvider,

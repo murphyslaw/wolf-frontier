@@ -2,7 +2,7 @@ import { Partial } from "$fresh/runtime.ts";
 import { defineRoute, RouteConfig } from "$fresh/server.ts";
 import { Tabs } from "../../../../components/Tabs.tsx";
 import { TribeCompact } from "../../../../components/TribeCompact.tsx";
-import { tribeService } from "../../../../utils/TribeService.ts";
+import { typeService } from "../../../../utils/TribeService.ts";
 
 export const config: RouteConfig = {
   skipAppWrapper: true,
@@ -11,7 +11,7 @@ export const config: RouteConfig = {
 
 export default defineRoute(async (_req, ctx) => {
   const id = Number(ctx.params.id);
-  const tribes = await tribeService.findByHeadquarters(id);
+  const tribes = await typeService.findByHeadquarters(id);
 
   return (
     <Partial

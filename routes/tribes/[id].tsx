@@ -3,14 +3,14 @@ import { FreshContext } from "$fresh/server.ts";
 import { CharacterCompact } from "../../components/CharacterCompact.tsx";
 import { Tabs } from "../../components/Tabs.tsx";
 import { characterService } from "../../utils/CharacterService.ts";
-import { tribeService } from "../../utils/TribeService.ts";
+import { typeService } from "../../utils/TribeService.ts";
 
 export default async function TribeDetailsPage(
   _req: Request,
   ctx: FreshContext,
 ) {
   const tribeId = Number(ctx.params.id);
-  const tribe = await tribeService.get(tribeId);
+  const tribe = await typeService.get(tribeId);
 
   if (!tribe) {
     return ctx.renderNotFound();

@@ -155,4 +155,4 @@ class TribeService {
   }
 }
 
-export const tribeService = new TribeService(sql);
+export const typeService = new TribeService(sql);

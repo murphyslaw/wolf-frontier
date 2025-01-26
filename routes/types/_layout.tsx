@@ -1,6 +1,6 @@
 import { defineLayout } from "$fresh/src/server/defines.ts";
-import TribeSearch from "../../islands/TribeSearch.tsx";
-import { typeService } from "../../utils/TribeService.ts";
+import TypeSearch from "../../islands/TypeSearch.tsx";
+import { typeService } from "../../utils/TypeService.ts";
 
 export default defineLayout(async (req, ctx) => {
   const query = new URL(req.url).searchParams.get("query") || "";
@@ -10,15 +10,15 @@ export default defineLayout(async (req, ctx) => {
     <div class="flex flex-col gap-y-8">
       <header>
         <h1 class="displayLarge">
-          <span class="text-orange-600">T</span>ribes
+          <span class="text-orange-600">T</span>ypes
         </h1>
 
         <h2 class="headlineMedium uppercase text-white">
-          Volatile assemblies of survivors working towards a common goal
+          No clouds on this horizon. We've got clear skies.
         </h2>
       </header>
 
-      <TribeSearch query={query} total={total} />
+      <TypeSearch query={query} total={total} />
 
       <ctx.Component />
     </div>

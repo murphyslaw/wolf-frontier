@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { TribeCompact } from "../../components/TribeCompact.tsx";
-import { ITribe, tribeService } from "../../utils/TribeService.ts";
+import { ITribe, typeService } from "../../utils/TribeService.ts";
 
 interface Props {
   results: ITribe[];
@@ -11,7 +11,7 @@ export const handler: Handlers<Props> = {
     const query = new URL(req.url).searchParams.get("query") || "";
 
     if (!query) {
-      const defaultResults = await tribeService.findAllByIds([
+      const defaultResults = await typeService.findAllByIds([
         98000007,
         98000003,
         98000006,
@@ -32,7 +32,7 @@ export const handler: Handlers<Props> = {
       });
     }
 
-    const results = await tribeService.find(query);
+    const results = await typeService.find(query);
 
     if (results.length === 1) {
       return new Response("", {

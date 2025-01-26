@@ -71,3 +71,21 @@ export interface DB_Jumps {
   target: number;
   gate: boolean;
 }
+
+export interface DB_Type {
+  id: number;
+  name: string;
+  description: string;
+  smart_item_id: string;
+  type_id: number;
+  volume: number;
+  mass: number;
+  radius: number;
+  portion_size: number;
+  group_id: number;
+  group_name: string;
+  category_id: number;
+  category_name: string;
+  icon: string;
+  image: string;
+}
