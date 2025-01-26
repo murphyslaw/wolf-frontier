@@ -9,6 +9,88 @@ export default function News() {
         <article class="max-w-[40vw] flex flex-col gap-y-8 mx-auto">
           <header>
             <h2 class="headlineLarge">
+              type information and ship maximum jump distances
+            </h2>
+
+            <time
+              class="labelMedium text-grayLight"
+              datetime="2025-01-26 11:29"
+            >
+              2025-01-26 11:29
+            </time>
+          </header>
+
+          <main class="flex flex-col gap-y-8">
+            <p class="bodyMedium">
+              What a universe would it be, if only filled by void? Mass and
+              volume is what civilizations are flourishing on.
+            </p>
+
+            <p class="bodyMedium">
+              This update allows to search through the "types" database of
+              things available in the Frontier. You can now search for anything
+              from "A" like "Anser" to "Z" like "Zarquis Pocket Spawner". Try it
+              out and wonder about some of the results.
+            </p>
+
+            <p class="bodyMedium">
+              You will probably encounter some incorrect types, which is because
+              the World API types database does not seem to reflect the latest
+              state yet. I only manually patched the name of the three "Shuttle"
+              types.
+            </p>
+
+            <img
+              class="bordered"
+              src="/images/news/types-section.jpg"
+            />
+
+            <p class="bodyMedium">
+              All the ships are displayed on the types main navigation page and
+              as mentioned before, the name of the three shuttles are patched
+              manually. When you go to a details page of a ship, you will also
+              find the maximum jump distance. It assumes{" "}
+              <a href="http://localhost:8000/types/78437">EU-90 Fuel</a>{" "}
+              for any Frigate or bigger and{" "}
+              <a href="http://localhost:8000/types/77818">uSOF-30 Fuel</a>{" "}
+              for either Shuttles or Corvettes, it uses the actual in-game mass
+              of the ships and adds the mass of the appropriate engine to it.
+            </p>
+
+            <img
+              class="bordered"
+              src="/images/news/ship-information.jpg"
+            />
+
+            <p class="bodyMedium">
+              The formula for calculating the maxium jump distance is <br />
+              <br />
+              <math>
+                max distance = fuel level * fuel quality * distance conversion
+                factor (1e5 = 100000) / ship mass
+              </math>
+              <br />
+              <br />You can also find all{" "}
+              <a href="https://docs.google.com/spreadsheets/d/1s8neN9uHGL2Yo0jZz0oAq6RA0_-LMBAqF2S1Djk93e0/edit?usp=sharing">
+                jump distances in a practical spreadsheet
+              </a>, which gets updated continously.
+            </p>
+
+            <img
+              class="bordered"
+              src="/images/news/distances-spreadsheet.jpg"
+            />
+
+            <p class="bodyMedium">
+              Have clear skies,<br />
+              Murphyslaw
+            </p>
+          </main>
+        </article>
+
+        <article class="max-w-[40vw] flex flex-col gap-y-8 mx-auto">
+          <header>
+            <h2 class="headlineLarge">
               content and visual improvements
             </h2>
 
