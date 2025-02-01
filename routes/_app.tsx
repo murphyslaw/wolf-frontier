@@ -14,7 +14,10 @@ export default function App({ Component }: PageProps) {
         <link rel="stylesheet" href="/styles.css" />
       </head>
 
-      <body>
+      <body
+        class="bg-no-repeat bg-black"
+        style="background-image: url('/images/fade_bg.webp');"
+      >
         <Component />
       </body>
     </html>
